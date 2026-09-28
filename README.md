@@ -1,49 +1,58 @@
 # 🦤 Dodo OS
 
-**A privacy-focused, open-source mobile OS based on AOSP.**
+**Privacy-focused, open-source Android за OnePlus Nord N100 (billie2).**
 
-Dodo OS is a custom Android distribution built directly on the
-[Android Open Source Project (AOSP)](https://source.android.com/). Its goal
-is a private, de-Googled-by-default phone experience — with Google services
-available only inside a sandbox — inspired by projects like GrapheneOS.
+Dodo OS е custom Android дистрибуция, базирана на **LineageOS 22.2 (Android 15)**,
+построена от източник специално за **OnePlus Nord N100 (BE2013 / billie2)**.
+Целта: частен, de-Googled телефон по подразбиране — Google услугите работят само
+в **sandbox** (microG) — вдъхновено от GrapheneOS.
 
-> ⚠️ **Honest scope note:** Dodo OS targets the **OnePlus Nord N100 (BE2013)**.
-> This device's bootloader **cannot be re-locked with custom keys**, so Dodo OS
-> cannot offer the same verified-boot hardware guarantees as GrapheneOS on Pixel.
-> Dodo OS is a strong *privacy* ROM, not a drop-in replacement for Graphene's
-> hardware security model. See [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> ⚠️ **Честна бележка:** bootloader-ът на N100 **не може да се заключи пак с твой
+> ключ**, затова Dodo OS не дава verified boot като GrapheneOS на Pixel. Това е
+> силен *privacy* ROM, не заместител на хардуерната сигурност на Graphene.
 
-## Target device
-
+## Устройство
 | | |
 |---|---|
-| Device | OnePlus Nord N100 |
-| Model | BE2013 (North America) |
-| SoC | Qualcomm Snapdragon 460 (bengal / SM4250) |
-| Base | AOSP |
+| Телефон | OnePlus Nord N100 |
+| Модел | BE2013 |
+| Кодово име | **billie2** |
+| Чип | Snapdragon 460 (SM4250 / bengal) |
+| База | LineageOS 22.2 (Android 15) |
+| Нужен firmware | OxygenOS **11.0.15** |
 
-## Planned features
+## Какво има вътре
+- 📶 **Работещо WiFi** (модулът `qca_cld3_wlan.ko` е компилиран вътре)
+- 📦 **microG** — Google услуги в sandbox (Google работи, без Google проследяване)
+- 🎨 **Lawnchair** (Pixel launcher) + DODO launcher / dialer / икони
+- 🔒 **F-Droid**, **Aurora Store** (Play анонимно), **Wasted** (авто-изтриване),
+  **Duress** (паник изтриване)
+- 🎬 Собствена **DODO boot анимация**
+- 🔐 Криптиране по подразбиране, изолирани профили, USB-C защита при заключен
 
-- 🔒 Privacy-first defaults (no Google telemetry out of the box)
-- 📦 **Sandboxed Google Play services** (via microG or Play in a work-profile sandbox)
-- 👥 Sandboxed / isolated user profiles
-- 🔌 **USB-C data protection** — block USB data when the screen is locked
-- 🚨 **Duress / panic code** — a secondary PIN that wipes or locks the device
-- 🎨 Custom Dodo OS branding (name, logo, boot animation)
+## Документация
+- 📖 [Как е направено (пълен дневник + капани)](docs/КАК-Е-НАПРАВЕНО.md)
+- 🗺️ [Roadmap](docs/ROADMAP.md)
+- 🔒 [Функции за сигурност](docs/SECURITY.md)
+- 📲 [Флашване](scripts/README.md)
 
-## Repository layout
+## Структура на repo-то
+| Папка | За какво е |
+|-------|-----------|
+| `vendor-dodo/` | Конфигурация за вграждане на приложенията (Android.mk + dodo.mk) |
+| `manifest/` | repo манифести (billie2 local manifest) |
+| `scripts/` | Билд + флашване скриптове |
+| `overlays/` | Privacy overlay настройки |
+| `patches/` | Спецификации на privacy функции |
+| `docs/` | Документация |
+| `prebuilt-apps/` | Конфигурация за pre-installed приложенията |
 
-| Folder | Purpose |
-|--------|---------|
-| `manifest/` | `repo` manifest — defines which sources to sync (AOSP + device) |
-| `overlays/` | Branding & configuration overlays (name, logo, defaults) |
-| `patches/`  | Custom patches implementing Dodo OS privacy features |
-| `docs/`     | Design docs, roadmap, build instructions |
+## Сайт
+🌐 **https://gpsn0w.github.io/oneplus/**
 
-## Status
+## Лиценз
+Apache License 2.0 — виж [`LICENSE`](LICENSE), както AOSP/LineageOS.
 
-🚧 **Early setup.** See [`docs/ROADMAP.md`](docs/ROADMAP.md) for current stage.
-
-## License
-
-Apache License 2.0 — see [`LICENSE`](LICENSE), consistent with AOSP.
+---
+*Направено с 🦤 и грижа за приватността. Не е свързано с Google, OnePlus,
+LineageOS или GrapheneOS.*

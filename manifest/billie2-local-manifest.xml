@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="sohaibdevelop1290-oss/android_device_oneplus_billie2"     path="device/oneplus/billie2" remote="github" revision="lineage-22.2" />
+  <project name="sohaibdevelop1290-oss/proprietary_vendor_oneplus_billie2" path="vendor/oneplus/billie2" remote="github" revision="lineage-22.2" />
+  <project name="sohaibdevelop1290-oss/android_kernel_oneplus_sm4250"      path="kernel/oneplus/sm4250"  remote="github" revision="lineage-22.2" />
+  <project name="sohaibdevelop1290-oss/android_hardware_oneplus"           path="hardware/oneplus"       remote="github" revision="lineage-22.2" />
+</manifest>
