@@ -15,3 +15,9 @@ SOONG_CONFIG_lineage_bootanimation_height := 1600
 SOONG_CONFIG_lineage_bootanimation_width := 720
 SOONG_CONFIG_lineage_bootanimation_half_res := false
 SOONG_CONFIG_lineage_bootanimation_prebuilt_file := vendor/dodo/bootanimation.zip
+
+# ===== ДИАГНОСТИКА: adb включен от старта =====
+# За да хванем защо дисплеят е черен — adb работи без разрешение на черен екран.
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sys.usb.config=adb \
+    ro.adb.secure=0

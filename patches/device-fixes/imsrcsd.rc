@@ -1,0 +1,8 @@
+# DODO: imsrcsd неутрализиран — крашваше в кръг и блокираше бута (IMS RCS).
+# Пренасочен към no-op: дори да го викне телефонията, излиза чисто без краш.
+service vendor.imsrcsservice /system/bin/true
+    class main
+    user radio
+    group radio vendor_qti_diag log inet wakelock
+    disabled
+    oneshot
