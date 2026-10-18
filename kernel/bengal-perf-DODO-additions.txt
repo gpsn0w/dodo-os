@@ -1,0 +1,15 @@
+# ===== DODO privacy hardening (нулев/минимален performance разход) =====
+CONFIG_SECURITY_DMESG_RESTRICT=y
+CONFIG_STRICT_KERNEL_RWX=y
+# CONFIG_FORTIFY_SOURCE невъзможен — depends on !CC_IS_CLANG (билдваме с clang)
+
+# ===== DODO WireGuard (вграден VPN на kernel ниво) =====
+CONFIG_WIREGUARD=y
+
+# ===== DODO мрежа: BBR congestion + FQ qdisc (по-бърз, по-стабилен нет) =====
+# BBR е скрит под TCP_CONG_ADVANCED — трябва да го включим първо.
+CONFIG_TCP_CONG_ADVANCED=y
+CONFIG_TCP_CONG_CUBIC=y
+CONFIG_TCP_CONG_BBR=y
+CONFIG_DEFAULT_TCP_CONG="cubic"
+CONFIG_NET_SCH_FQ=y

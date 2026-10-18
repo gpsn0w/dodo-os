@@ -1,9 +1,14 @@
-# Автоматично генериран — DODO добавки + privacy + microG + Pixel.
-PRODUCT_PACKAGES += DodoLauncher DodoDialer DodoIcons FDroid AuroraStore Wasted DuressApp
+# DODO OS — AOSP vanilla вид + privacy + microG.
+# Launcher: ползваме Trebuchet (вграден в LineageOS = AOSP launcher вид).
+# Махнати: DodoLauncher/DodoIcons/Lawnchair — за чист vanilla AOSP вид.
+# Pixel/DODO launcher-ите можем да върнем после ако поискаш.
+PRODUCT_PACKAGES += FDroid AuroraStore Wasted DuressApp
+# DODO self-check команда (реална системна проверка)
+PRODUCT_PACKAGES += dodo-status
+# DODO Boot Check app — показва реалната проверка като пръв екран при старт
+PRODUCT_PACKAGES += DodoBootCheck
 # microG (Google услуги в sandbox) — LineageOS 22.2 има вградена signature spoofing
 PRODUCT_PACKAGES += GmsCore Companion GsfProxy
-# Pixel-стил launcher
-PRODUCT_PACKAGES += Lawnchair
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
 # ===== DODO boot анимация =====

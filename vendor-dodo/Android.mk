@@ -112,3 +112,11 @@ LOCAL_ENFORCE_USES_LIBRARIES := false
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 include $(BUILD_PREBUILT)
+
+# ===== DODO self-check команда (реална проверка) =====
+include $(CLEAR_VARS)
+LOCAL_MODULE := dodo-status
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_SRC_FILES := dodo-status.sh
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_PREBUILT)

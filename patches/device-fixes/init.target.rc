@@ -93,6 +93,16 @@ on post-fs-data
 on boot
     write /dev/cpuset/background/cpus 0-3
 
+# DODO privacy + мрежа sysctl
+on property:sys.boot_completed=1
+    # скрий kernel указатели/логове от не-root (anti-exploit)
+    write /proc/sys/kernel/kptr_restrict 2
+    write /proc/sys/kernel/dmesg_restrict 1
+    write /proc/sys/kernel/perf_event_paranoid 3
+    # BBR congestion control + FQ qdisc по подразбиране
+    write /proc/sys/net/core/default_qdisc fq
+    write /proc/sys/net/ipv4/tcp_congestion_control bbr
+
 on boot && property:persist.vendor.usb.controller.default=*
     setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
 
