@@ -4,238 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DODO OS — Privacy Android за OnePlus N100</title>
-<meta name="description" content="DODO OS — privacy-focused Android ROM за OnePlus Nord N100. От екипа на DODO Assistant. microG sandbox, duress код, USB-C защита, поправено WiFi.">
+<meta name="description" content="DODO OS — privacy-focused Android ROM за OnePlus Nord N100. От екипа на DODO. microG sandbox, duress код, USB-C защита, поправено WiFi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#05070a; --panel:#0a0f0d; --line:rgba(62,255,160,.10);
-  --green:#3effa0; --green2:#1fd98a; --greendim:#1c7a52; --greendark:#0c3d29;
-  --text:#ddf5e8; --muted:#6f9584; --white:#eafff5;
-  --mono:'JetBrains Mono',monospace; --sans:'Space Grotesk',sans-serif;
+  --bg:#0a0d0c; --panel:#111613; --line:#1e2a24;
+  --green:#3effa0; --greendim:#2a8f63; --muted:#879a90;
+  --text:#e3efe9; --white:#f2fff9;
+  --mono:'JetBrains Mono',monospace; --sans:'Inter',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;position:relative}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+a{color:var(--green);text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
 
-/* ---- грид фон ---- */
-.gridbg{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 55%,transparent 100%)}
-.dots{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+/* nav */
+nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,13,12,.85);backdrop-filter:blur(8px);z-index:10}
+nav .wrap{display:flex;align-items:center;gap:12px;height:58px}
+.logo{display:flex;gap:5px}
+.logo span{width:17px;height:20px;border:2.5px solid var(--white);border-radius:5px}
+.logo span:nth-child(2),.logo span:nth-child(4){border-color:var(--green)}
+.brand-name{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.02em}
+.brand-name b{color:var(--green)}
+nav .sp{margin-left:auto}
+nav a.nl{color:var(--muted);font-size:14px;margin-left:20px;transition:.15s}
+nav a.nl:hover{color:var(--green)}
+@media(max-width:620px){nav a.nl:not(.gh){display:none}}
 
-/* ---- nav ---- */
-nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(5,7,10,.7);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:16px;height:66px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand .mark{width:40px;height:40px;border:2px solid var(--green);border-radius:11px;display:grid;place-items:center;
-  box-shadow:0 0 18px rgba(62,255,160,.4),inset 0 0 14px rgba(62,255,160,.25);position:relative}
-.brand .mark::after{content:"";width:13px;height:13px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}
-.logo-dodo{display:flex;gap:7px}
-.logo-dodo span{width:26px;height:30px;border:3px solid var(--white);border-radius:8px}
-.logo-dodo span:nth-child(2),.logo-dodo span:nth-child(4){border-color:var(--green);box-shadow:0 0 10px rgba(62,255,160,.5)}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--green);border:1px solid var(--greendim);
-  border-radius:999px;padding:6px 13px;text-transform:uppercase}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
-.lang{font-family:var(--mono);font-size:13px;border:1px solid var(--greendim);border-radius:9px;padding:5px 12px;color:var(--muted)}
-.lang b{color:var(--green)}
-.ghbtn{font-family:var(--mono);font-size:13px;color:var(--green);border:1px solid var(--greendim);border-radius:9px;padding:7px 14px;transition:.2s}
-.ghbtn:hover{background:rgba(62,255,160,.08);box-shadow:0 0 16px rgba(62,255,160,.2)}
+/* hero */
+header{padding:66px 0 48px;text-align:center;border-bottom:1px solid var(--line)}
+.logo-big{display:inline-flex;gap:9px;margin-bottom:22px}
+.logo-big span{width:40px;height:48px;border:5px solid var(--white);border-radius:11px}
+.logo-big span:nth-child(2),.logo-big span:nth-child(4){border-color:var(--green);box-shadow:0 0 18px rgba(62,255,160,.35)}
+header h1{font-family:var(--mono);font-size:clamp(30px,6vw,46px);font-weight:700;letter-spacing:.01em}
+header h1 .os{color:var(--green)}
+.tagline{color:var(--muted);font-size:17px;max-width:540px;margin:14px auto 28px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;font-family:var(--mono);font-size:12.5px}
+.badge{color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:5px 11px}
+.badge b{color:var(--green)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;border:1px solid var(--line);transition:.18s;cursor:pointer}
+.btn.primary{background:var(--green);color:#06140d;border-color:var(--green)}
+.btn.primary:hover{box-shadow:0 0 22px rgba(62,255,160,.4)}
+.btn.ghost{color:var(--text)}
+.btn.ghost:hover{border-color:var(--green);color:var(--green)}
 
-/* ---- hero ---- */
-header{position:relative;z-index:1;padding:40px 0 70px}
-.hero-core{position:relative;height:420px;display:grid;place-items:center;margin-bottom:10px}
-#orb{width:100%;max-width:560px;height:420px}
-.eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.16em;
-  color:var(--green);text-transform:uppercase;margin-bottom:18px}
-.eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
-.hero-title{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-.logo-big{display:flex;gap:11px}
-.logo-big span{width:62px;height:74px;border:7px solid var(--white);border-radius:16px}
-.logo-big span:nth-child(2),.logo-big span:nth-child(4){border-color:var(--green);box-shadow:0 0 24px rgba(62,255,160,.45)}
-.os-word{font-family:var(--mono);font-weight:700;font-size:54px;color:var(--green);letter-spacing:.04em;text-shadow:0 0 28px rgba(62,255,160,.4)}
-.sub{font-size:clamp(17px,2.4vw,22px);color:var(--muted);max-width:620px;margin:18px 0 30px;font-family:var(--mono)}
-.sub b{color:var(--text)}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-weight:500;font-size:14px;display:inline-flex;align-items:center;gap:9px;
-  padding:13px 22px;border-radius:11px;transition:.2s;border:1px solid transparent}
-.btn.primary{background:var(--green);color:#05140d;font-weight:700;box-shadow:0 0 26px rgba(62,255,160,.35)}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(62,255,160,.55)}
-.btn.ghost{border-color:var(--greendim);color:var(--green)}
-.btn.ghost:hover{background:rgba(62,255,160,.07)}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;font-family:var(--mono);font-size:12.5px}
-.chip{color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:rgba(62,255,160,.03)}
-.chip b{color:var(--green)}
+/* sections */
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-family:var(--mono);font-size:15px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:22px}
+h2::before{content:"# ";color:var(--greendim)}
+.rows{display:grid;gap:2px}
+.row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline}
+.row:first-child{border-top:none}
+.row .k{font-family:var(--mono);color:var(--green);font-size:14px;font-weight:500}
+.row .v{color:var(--muted);font-size:15px}
+.row .v b{color:var(--text);font-weight:600}
+@media(max-width:560px){.row{grid-template-columns:1fr;gap:3px}}
 
-/* ---- sections ---- */
-section{position:relative;z-index:1;padding:66px 0}
-.sec-eyebrow{font-family:var(--mono);color:var(--green);font-size:13px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
-.sec-eyebrow::before{content:"//";color:var(--greendim)}
-h2{font-size:clamp(28px,4.3vw,40px);font-weight:700;margin:10px 0 12px;letter-spacing:-.01em}
-.lead{color:var(--muted);font-size:16.5px;max-width:640px}
-.center{text-align:center}.center .lead{margin:0 auto}.center .sec-eyebrow{justify-content:center}
+.apps-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:13px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 13px}
+.pill.green{color:var(--green);border-color:var(--greendim)}
 
-.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:16px;margin-top:40px}
-.card{background:linear-gradient(180deg,var(--panel),rgba(5,7,10,.6));border:1px solid var(--line);border-radius:16px;padding:26px;transition:.25s;position:relative;overflow:hidden}
-.card:hover{border-color:rgba(62,255,160,.4);transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.4)}
-.card .ico{width:38px;height:38px;margin-bottom:15px;color:var(--green)}
-.card .ico svg{width:38px;height:38px;stroke:var(--green);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px rgba(62,255,160,.3))}
-.card h3{font-size:19px;margin-bottom:7px;font-family:var(--mono)}
-.card p{color:var(--muted);font-size:14.5px}
-
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:38px}
-.app{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;transition:.2s}
-.app:hover{transform:scale(1.04);border-color:rgba(62,255,160,.35)}
-.app .ico svg{width:34px;height:34px;stroke:var(--white);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.app.dialer .ico svg{stroke:var(--green);filter:drop-shadow(0 0 9px rgba(62,255,160,.45))}
-.app b{display:block;margin-top:11px;font-family:var(--mono);font-size:15px}
-.app span{font-size:12.5px;color:var(--muted)}
-
-.steps{display:grid;gap:14px;margin-top:38px;max-width:780px;counter-reset:s}
-.step{display:flex;gap:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
-.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--mono);color:var(--green);font-size:22px;font-weight:700;flex:0 0 auto;text-shadow:0 0 14px rgba(62,255,160,.4)}
-.step h3{font-size:16px;margin-bottom:3px;font-family:var(--mono)}
-.step p{color:var(--muted);font-size:14.5px}
-.step code{font-family:var(--mono);background:#071410;border:1px solid var(--greendark);color:var(--green);padding:2px 7px;border-radius:6px;font-size:13px}
-.note{font-family:var(--mono);background:rgba(62,255,160,.05);border:1px solid var(--greendark);border-left:3px solid var(--green);border-radius:12px;padding:20px 22px;margin-top:34px;color:var(--muted);font-size:14px}
+/* install */
+ol.steps{list-style:none;counter-reset:s;display:grid;gap:12px}
+ol.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline}
+ol.steps li::before{content:counter(s);font-family:var(--mono);color:var(--green);font-weight:700;flex:0 0 22px}
+ol.steps li div{color:var(--muted)}
+ol.steps b{color:var(--text)}
+code{font-family:var(--mono);background:#071410;border:1px solid var(--line);color:var(--green);padding:2px 7px;border-radius:5px;font-size:13.5px}
+.note{font-family:var(--mono);font-size:13.5px;color:var(--muted);background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:16px 18px;margin-top:24px}
 .note b{color:var(--text)}
 
-.dl{background:radial-gradient(ellipse at 50% 0%,rgba(62,255,160,.12),transparent 70%);border:1px solid var(--line);border-radius:24px;padding:52px 28px;text-align:center;margin-top:16px}
-
-footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:42px 0;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13.5px}
-footer a{color:var(--green)}
-.discl{font-size:12px;color:#55705f;max-width:680px;margin:16px auto 0;line-height:1.7}
-
-.reveal{opacity:0;transform:translateY(26px);transition:.7s}.reveal.in{opacity:1;transform:none}
-@media(max-width:720px){.tag,.lang{display:none}.os-word{font-size:40px}.logo-big span{width:46px;height:56px;border-width:6px}.hero-core{height:320px}#orb{height:320px}}
+footer{padding:36px 0;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px}
+.discl{font-size:11.5px;color:#5a6f64;max-width:620px;margin:14px auto 0;line-height:1.7}
 </style>
 </head>
 <body>
-<div class="gridbg"></div>
-<canvas class="dots" id="dots"></canvas>
 
 <nav><div class="wrap">
-  <div class="brand">
-    <div class="mark"></div>
-    <div class="logo-dodo"><span></span><span></span><span></span><span></span></div>
-  </div>
-  <span class="tag">OS · ПРОБНА ВЕРСИЯ</span>
-  <div class="nav-right">
-    <span class="lang"><b>BG</b> | EN</span>
-    <a href="https://github.com/gpsn0w/oneplus" class="ghbtn" target="_blank">GitHub</a>
-  </div>
+  <div class="logo"><span></span><span></span><span></span><span></span></div>
+  <span class="brand-name">DODO<b> OS</b></span>
+  <span class="sp"></span>
+  <a href="#features" class="nl">Функции</a>
+  <a href="#install" class="nl">Инсталиране</a>
+  <a href="https://github.com/gpsn0w/oneplus" class="nl gh" target="_blank">GitHub</a>
 </div></nav>
 
 <header><div class="wrap">
-  <div class="hero-core"><canvas id="orb"></canvas></div>
-  <div class="eyebrow">Privacy Android · от екипа на DODO</div>
-  <div class="hero-title">
-    <div class="logo-big"><span></span><span></span><span></span><span></span></div>
-    <span class="os-word">OS</span>
+  <div class="logo-big"><span></span><span></span><span></span><span></span></div>
+  <h1>DODO <span class="os">OS</span></h1>
+  <p class="tagline">Privacy Android за OnePlus Nord N100. Google само в sandbox — всичко останало остава при теб.</p>
+  <div class="badges">
+    <span class="badge">📱 <b>billie2</b></span>
+    <span class="badge">🤖 Android <b>15</b></span>
+    <span class="badge">📶 Поправено <b>WiFi</b></span>
+    <span class="badge">🚫 <b>De-Googled</b></span>
   </div>
-  <p class="sub">Твоят телефон. <b>Твоите данни.</b> Privacy Android за <b>OnePlus Nord N100</b> — Google само в sandbox, всичко останало остава при теб.</p>
   <div class="cta">
-    <a href="#download" class="btn primary">↓ Изтегли ROM-а</a>
-    <a href="#install" class="btn ghost">▸ Как да инсталирам</a>
-  </div>
-  <div class="chips">
-    <span class="chip">📱 N100 · <b>billie2</b></span>
-    <span class="chip">🤖 Android <b>15</b></span>
-    <span class="chip">📶 Поправено <b>WiFi</b></span>
-    <span class="chip">🚫 <b>De-Googled</b></span>
+    <a href="https://github.com/gpsn0w/oneplus/releases" class="btn primary" target="_blank">↓ Изтегли ROM-а</a>
+    <a href="#install" class="btn ghost">Как да инсталирам</a>
   </div>
 </div></header>
 
 <section id="features"><div class="wrap">
-  <div class="center reveal"><span class="sec-eyebrow">Функции</span><h2>Направен за сигурност</h2><p class="lead">Всичко важно — вградено по подразбиране.</p></div>
-  <div class="grid-cards">
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M21 8v8a2 2 0 01-1 1.73l-7 4a2 2 0 01-2 0l-7-4A2 2 0 013 16V8a2 2 0 011-1.73l7-4a2 2 0 012 0l7 4A2 2 0 0121 8z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg></span><h3>Google в sandbox</h3><p>microG заменя Google Play услугите. Приложенията работят, но реалният Google код не се пуска.</p></div>
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><h3>Duress код</h3><p>Таен PIN, който изтрива телефона вместо да го отключи — за ситуации, в които те принуждават.</p></div>
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 6v6l2 2"/></svg></span><h3>USB-C защита</h3><p>При заключен телефон USB портът само зарежда — без данни. Блокира кражба на данни.</p></div>
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Авто-изтриване</h3><p>След N грешни опита или дни без отключване, телефонът се изтрива сам — тихо.</p></div>
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span><h3>Изолирани профили</h3><p>Отделни „светове" на един телефон — работа, лично, гост. Всеки с отделно криптиране.</p></div>
-    <div class="card reveal"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><h3>Криптиране по подразбиране</h3><p>Всичките ти данни са криптирани от първия момент, без настройки.</p></div>
+  <h2>Функции</h2>
+  <div class="rows">
+    <div class="row"><div class="k">microG</div><div class="v">Google услуги в <b>sandbox</b> — приложенията работят, Google кодът не се пуска.</div></div>
+    <div class="row"><div class="k">Duress код</div><div class="v">Таен PIN, който <b>изтрива</b> телефона вместо да го отключи.</div></div>
+    <div class="row"><div class="k">USB-C защита</div><div class="v">При заключен телефон USB портът <b>само зарежда</b> — без данни.</div></div>
+    <div class="row"><div class="k">Авто-изтриване</div><div class="v">След N грешни опита или дни без отключване — <b>трие се сам</b>.</div></div>
+    <div class="row"><div class="k">Профили</div><div class="v">Изолирани „светове" на един телефон, всеки с <b>отделно криптиране</b>.</div></div>
+    <div class="row"><div class="k">Криптиране</div><div class="v">Всичките данни криптирани <b>по подразбиране</b>, без настройки.</div></div>
   </div>
 </div></section>
 
 <section id="apps"><div class="wrap">
-  <div class="center reveal"><span class="sec-eyebrow">Приложения</span><h2>Готово от кутията</h2><p class="lead">Отворени приложения, без Google акаунт.</p></div>
-  <div class="apps">
-    <div class="app reveal"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 9l2 2-2 2M13 15h3"/></svg></span><b>F-Droid</b><span>Отворен магазин</span></div>
-    <div class="app reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 01-8 0"/></svg></span><b>Aurora Store</b><span>Play анонимно</span></div>
-    <div class="app reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></span><b>Wasted</b><span>Авто-изтриване</span></div>
-    <div class="app reveal"><span class="ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><b>Duress</b><span>Паник изтриване</span></div>
-    <div class="app reveal"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><b>DODO Launcher</b><span>Начален екран</span></div>
-    <div class="app reveal dialer"><span class="ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></span><b>DODO Dialer</b><span>Обаждания</span></div>
+  <h2>Вградени приложения</h2>
+  <div class="apps-row">
+    <span class="pill">F-Droid</span>
+    <span class="pill">Aurora Store</span>
+    <span class="pill">Wasted</span>
+    <span class="pill">Duress</span>
+    <span class="pill green">DODO Launcher</span>
+    <span class="pill green">DODO Dialer</span>
   </div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <div class="center reveal"><span class="sec-eyebrow">Инсталиране</span><h2>Стъпка по стъпка</h2><p class="lead">Само за OnePlus Nord N100 (BE2013 / billie2).</p></div>
-  <div class="steps reveal">
-    <div class="step"><div><h3>Отключи bootloader-а</h3><p>Developer options → OEM unlocking, после <code>fastboot flashing unlock</code>.</p></div></div>
-    <div class="step"><div><h3>Влез в recovery</h3><p>Boot в recovery → Apply Update → Apply from ADB.</p></div></div>
-    <div class="step"><div><h3>Флашни ROM-а</h3><p>На компютъра: <code>adb sideload dodo-os-billie2.zip</code></p></div></div>
-    <div class="step"><div><h3>Рестартирай</h3><p>Reboot system now — и WiFi работи! 🎉</p></div></div>
-  </div>
-  <div class="note reveal">⚠️ <b>Честно:</b> bootloader-ът на N100 не може да се заключи пак с твой ключ (хардуерно), затова DODO OS не дава verified boot като GrapheneOS. Но privacy, sandbox и изтриване работят напълно.</div>
-</div></section>
-
-<section id="download"><div class="wrap reveal">
-  <div class="dl">
-    <div class="logo-big" style="justify-content:center;margin-bottom:18px"><span></span><span></span><span></span><span></span></div>
-    <h2>Изтегли DODO OS</h2>
-    <p class="lead center" style="margin-bottom:26px">Кодът и последните билдове са в GitHub — open source.</p>
-    <div class="cta" style="justify-content:center">
-      <a href="https://github.com/gpsn0w/oneplus/releases" class="btn primary" target="_blank">↓ Releases</a>
-      <a href="https://github.com/gpsn0w/oneplus" class="btn ghost" target="_blank">◇ Изходен код</a>
-    </div>
-  </div>
+  <h2>Инсталиране</h2>
+  <ol class="steps">
+    <li><div>Отключи bootloader-а: <b>Developer options → OEM unlocking</b>, после <code>fastboot flashing unlock</code></div></li>
+    <li><div>Boot в recovery → <b>Apply Update → Apply from ADB</b></div></li>
+    <li><div>На компютъра: <code>adb sideload dodo-os-billie2.zip</code></div></li>
+    <li><div><b>Reboot system now</b> — и WiFi работи 🎉</div></li>
+  </ol>
+  <div class="note">⚠️ <b>Честно:</b> bootloader-ът на N100 не може да се заключи пак с твой ключ (хардуерно), затова DODO OS не дава verified boot като GrapheneOS. Но privacy, sandbox и изтриване работят напълно.</div>
 </div></section>
 
 <footer><div class="wrap">
-  <div class="logo-dodo" style="justify-content:center"><span></span><span></span><span></span><span></span></div>
-  <p style="margin-top:14px">DODO OS · Open-source · Apache 2.0 · 🦤</p>
-  <p style="margin-top:6px"><a href="https://github.com/gpsn0w/oneplus">GitHub</a> · <a href="https://gpsn0w.github.io/DODO/">DODO Assistant</a> · Габриел Жечев</p>
+  <div class="logo" style="justify-content:center;display:inline-flex"><span></span><span></span><span></span><span></span></div>
+  <p style="margin-top:12px">DODO OS · Open-source · Apache 2.0 · 🦤</p>
+  <p style="margin-top:4px"><a href="https://github.com/gpsn0w/oneplus">GitHub</a> · <a href="https://gpsn0w.github.io/DODO/">DODO Assistant</a> · Габриел Жечев</p>
   <p class="discl">DODO OS не е свързан с Google, OnePlus или GrapheneOS. Android е търговска марка на Google LLC. Флашването на custom ROM изтрива данни и може да анулира гаранцията.</p>
 </div></footer>
 
-<script>
-// частична сфера (orb)
-(function(){
-  const c=document.getElementById('orb');if(!c)return;const x=c.getContext('2d');
-  function size(){c.width=c.clientWidth*2;c.height=c.clientHeight*2;}size();addEventListener('resize',size);
-  const N=820,pts=[];for(let i=0;i<N;i++){const t=Math.acos(2*Math.random()-1),p=Math.random()*Math.PI*2;pts.push([Math.sin(t)*Math.cos(p),Math.sin(t)*Math.sin(p),Math.cos(t)]);}
-  let a=0;
-  function draw(){
-    x.clearRect(0,0,c.width,c.height);const w=c.width,h=c.height,cx=w/2,cy=h/2,R=Math.min(w,h)*0.33;
-    a+=0.0035;const ca=Math.cos(a),sa=Math.sin(a);
-    // орбитални пръстени
-    x.strokeStyle='rgba(62,255,160,.18)';x.lineWidth=2;
-    for(let k=0;k<3;k++){x.save();x.translate(cx,cy);x.rotate(a*0.6+k*2.1);x.scale(1,0.4);x.beginPath();x.arc(0,0,R*1.25,0,7);x.stroke();x.restore();}
-    // точки на сферата
-    for(const pt of pts){const X=pt[0]*ca-pt[2]*sa,Z=pt[0]*sa+pt[2]*ca,Y=pt[1];
-      const s=(Z+1.6)/2.6,px=cx+X*R,py=cy+Y*R;
-      x.fillStyle='rgba('+ (120+Math.floor(120*s)) +',255,'+ (160+Math.floor(60*s)) +','+(0.25+0.7*s)+')';
-      x.beginPath();x.arc(px,py,1.3*s+0.4,0,7);x.fill();}
-    // ядро-светлина
-    const g=x.createRadialGradient(cx,cy,0,cx,cy,R*0.9);g.addColorStop(0,'rgba(200,255,220,.5)');g.addColorStop(.3,'rgba(62,255,160,.18)');g.addColorStop(1,'transparent');
-    x.fillStyle=g;x.beginPath();x.arc(cx,cy,R*0.9,0,7);x.fill();
-    requestAnimationFrame(draw);
-  }draw();
-})();
-// фонови точки
-(function(){const c=document.getElementById('dots');if(!c)return;const x=c.getContext('2d');
-  function size(){c.width=innerWidth;c.height=innerHeight;}size();addEventListener('resize',size);
-  const d=[];for(let i=0;i<60;i++)d.push([Math.random(),Math.random(),Math.random()*0.5+0.2]);
-  function draw(){x.clearRect(0,0,c.width,c.height);for(const p of d){x.fillStyle='rgba(62,255,160,'+(p[2]*0.4)+')';x.fillRect(p[0]*c.width,p[1]*c.height,2,2);}requestAnimationFrame(()=>{});}draw();
-})();
-// reveal
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%5*55)+'ms';io.observe(el)});
-</script>
 </body>
 </html>
