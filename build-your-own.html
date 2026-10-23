@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Направи DODO OS за твоя телефон | DODO OS</title>
+<meta name="description" content="Как да си направиш DODO OS за твое устройство — за Pixel, Samsung, Xiaomi, Motorola и други. Отворен код.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05070a">
+<link rel="icon" href="logo-dodo-os.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=16">
+</head>
+<body class="home">
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="hud-bar">
+	<a class="brand" href="index.html"><img src="logo-dodo-os.png" alt="DODO OS"><span class="name">DODO OS</span><span class="brand-beta" data-en="guide">урок</span></a>
+	<nav class="nav" id="nav">
+		<a href="index.html" data-en="Back">Назад към DODO OS</a>
+	</nav>
+	<div class="bar-clock" id="barClock">--:--:--</div>
+</header>
+
+<main id="main">
+
+<section class="section" id="build-your-own" style="padding-top:40px">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Other phones">За други телефони</span>
+			<h2 data-en="Make it for your phone">Направи го за твоя телефон</h2>
+			<p data-en="DODO OS is open source. If you have another device — Pixel, Samsung, Xiaomi, Motorola — you can build your own DODO OS by swapping the device tree.">DODO OS е отворен код. Ако имаш друго устройство — Pixel, Samsung, Xiaomi, Motorola — можеш да си направиш твое DODO OS, като смениш device tree-то.</p>
+		</div>
+		<div class="guide">
+			<div class="guide-step panel reveal">
+				<div class="gn">1</div>
+				<div class="gt">
+					<h3>Намери device tree за твоя телефон</h3>
+					<p>Търси в LineageOS или GitHub по името на твоя модел (напр. „lineage device &lt;телефон&gt;"). Трябват ти: device tree + vendor tree + kernel source. Повечето популярни телефони ги имат поддържани.</p>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">2</div>
+				<div class="gt">
+					<h3>Клонирай източника на DODO OS</h3>
+					<p>Вземи LineageOS 22.2 база и DODO vendor overlay:</p>
+					<pre class="cmd">repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
+repo sync -j8
+git clone https://github.com/gpsn0w/dodo-os vendor/dodo</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">3</div>
+				<div class="gt">
+					<h3>Добави твоя device tree</h3>
+					<p>Сложи дърветата за твоя телефон в <code>device/&lt;марка&gt;/&lt;codename&gt;</code> и <code>kernel/&lt;марка&gt;/&lt;soc&gt;</code>. Включи <code>vendor/dodo/dodo.mk</code> в inherit списъка на устройството.</p>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">4</div>
+				<div class="gt">
+					<h3>Компилирай</h3>
+					<p>Избери устройството си и компилирай целия ROM:</p>
+					<pre class="cmd">source build/envsetup.sh
+lunch lineage_&lt;codename&gt;-bp1a-userdebug
+mka bacon</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">5</div>
+				<div class="gt">
+					<h3>Флашни и сподели</h3>
+					<p>Получаваш подписан зип за твоето устройство в <code>out/target/product/&lt;codename&gt;/</code>. Флашваш го по същия начин като N100 ROM-а. Ако добавиш ново устройство — сподели го в GitHub, за да го ползват и други.</p>
+				</div>
+			</div>
+		</div>
+		<p class="pledge reveal" style="margin-top:26px">⚠ Компилирането на ROM иска силен компютър (16GB+ RAM, 300GB диск, Linux). Първият билд отнема 2–5 часа. Не е за начинаещи — но е постижимо.</p>
+	</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+	<div class="wrap">
+		<div class="fbrand"><img src="logo-dodo-os.png" alt=""><span>DODO OS</span></div>
+		<small>© 2026 · Габриел Жечев · Отворен код</small>
+	</div>
+</footer>
+
+<script src="three.min.js"></script>
+<script src="bg-field.js?v=4"></script>
+</body>
+</html>

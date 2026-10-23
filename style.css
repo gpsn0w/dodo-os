@@ -1119,3 +1119,7 @@ body.lang-glitching::before {
   box-shadow:0 10px 40px rgba(0,0,0,.5), 0 0 24px rgba(var(--rgb-green),.08)}
 .shot figcaption{font-family:var(--font-mono,monospace);font-size:12px;letter-spacing:.5px;
   color:rgba(var(--rgb-mint),.7);text-align:center}
+
+/* DODO: лого в хедъра — заоблено и леко по-голямо, за да се вижда орбът */
+.brand img{border-radius:8px;object-fit:cover;background:#000}
+.fbrand img{border-radius:8px;object-fit:cover}

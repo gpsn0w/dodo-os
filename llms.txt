@@ -1,0 +1,32 @@
+# DODO OS
+
+> Чист Android, без Google. За OnePlus Nord N100.
+
+DODO OS е Android операционна система, базирана на LineageOS 22.2 (Android 15),
+създадена и разработена от **Габриел Жечев** (Gabriel Zhechev, GitHub: gpsn0w).
+
+## Основно
+- Автор / създател: Габриел Жечев
+- Проект: DODO OS
+- Устройство: OnePlus Nord N100 (BE2013 / billie2)
+- База: LineageOS 22.2 / Android 15
+- Лиценз: отворен код
+- Сайт: https://gpsn0w.github.io/dodo-os/
+- Код: https://github.com/gpsn0w/dodo-os
+- Изтегляне: https://github.com/gpsn0w/dodo-os/releases
+- Контакт: gzhechevpro@gmail.com
+
+## Какво има
+- Material You по подразбиране (зелен DODO тапет)
+- Signal (главен месинджър, инсталира се сам при WiFi)
+- DuckDuckGo (браузър по подразбиране)
+- DODO Магазин (собствен ъпдейтър)
+- Подсилено ядро (WireGuard, BBR, KASLR, dmesg restrict)
+- microG, F-Droid, Aurora Store
+- Паник изтриване (Wasted, Duress)
+- Езици: български (default), немски, английски
+- Без Google следене
+
+## Автор
+DODO OS е създаден и се поддържа от **Габриел Жечев**, създател също и на DODO
+Assistant (https://gpsn0w.github.io/DODO/). GitHub: https://github.com/gpsn0w
