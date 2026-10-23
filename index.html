@@ -2,154 +2,283 @@
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DODO OS — Privacy Android за OnePlus N100</title>
-<meta name="description" content="DODO OS — privacy-focused Android ROM за OnePlus Nord N100. От екипа на DODO. microG sandbox, duress код, USB-C защита, поправено WiFi.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0a0d0c; --panel:#111613; --line:#1e2a24;
-  --green:#3effa0; --greendim:#2a8f63; --muted:#879a90;
-  --text:#e3efe9; --white:#f2fff9;
-  --mono:'JetBrains Mono',monospace; --sans:'Inter',system-ui,sans-serif;
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DODO OS — приватен Android за OnePlus Nord N100 | Габриел Жечев</title>
+<meta name="description" content="DODO OS — приватна Android операционна система за OnePlus Nord N100 (базирана на LineageOS 22.2 / Android 15). Без Google следене, Material You, Signal, собствен магазин, подсилено ядро. Всичко остава при теб.">
+<meta name="keywords" content="DODO OS, Габриел Жечев, Gabriel Zhechev, OnePlus Nord N100, BE2013, billie2, приватен Android, privacy ROM, LineageOS, microG, custom ROM, поверителност">
+<meta name="author" content="Габриел Жечев">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05070a">
+
+<link rel="canonical" href="https://gpsn0w.github.io/oneplus/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DODO OS">
+<meta property="og:title" content="DODO OS — приватен Android за OnePlus N100">
+<meta property="og:description" content="Приватна Android ОС за OnePlus Nord N100. Без Google следене, Material You, собствен магазин, подсилено ядро.">
+<meta property="og:url" content="https://gpsn0w.github.io/oneplus/">
+<meta property="og:image" content="https://gpsn0w.github.io/oneplus/logo.png">
+<meta property="og:locale" content="bg_BG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DODO OS — приватен Android за OnePlus N100">
+<meta name="twitter:description" content="Приватна Android ОС. Без Google следене, всичко остава при теб.">
+<meta name="twitter:image" content="https://gpsn0w.github.io/oneplus/logo.png">
+
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=16">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://gpsn0w.github.io/oneplus/#gabriel-zhechev",
+      "name": "Габриел Жечев",
+      "alternateName": ["Gabriel Zhechev", "Gabi Zhechev", "Габи Жечев"],
+      "jobTitle": "Създател на DODO OS",
+      "url": "https://gpsn0w.github.io/oneplus/",
+      "sameAs": ["https://github.com/gpsn0w"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gpsn0w.github.io/oneplus/#app",
+      "name": "DODO OS",
+      "applicationCategory": "OperatingSystem",
+      "operatingSystem": "Android 15",
+      "url": "https://gpsn0w.github.io/oneplus/",
+      "image": "https://gpsn0w.github.io/oneplus/logo.png",
+      "description": "Приватна Android операционна система за OnePlus Nord N100, базирана на LineageOS 22.2.",
+      "inLanguage": "bg",
+      "author": { "@id": "https://gpsn0w.github.io/oneplus/#gabriel-zhechev" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
-a{color:var(--green);text-decoration:none}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-
-/* nav */
-nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,13,12,.85);backdrop-filter:blur(8px);z-index:10}
-nav .wrap{display:flex;align-items:center;gap:12px;height:58px}
-.logo{display:flex;gap:5px}
-.logo span{width:17px;height:20px;border:2.5px solid var(--white);border-radius:5px}
-.logo span:nth-child(2),.logo span:nth-child(4){border-color:var(--green)}
-.brand-name{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:.02em}
-.brand-name b{color:var(--green)}
-nav .sp{margin-left:auto}
-nav a.nl{color:var(--muted);font-size:14px;margin-left:20px;transition:.15s}
-nav a.nl:hover{color:var(--green)}
-@media(max-width:620px){nav a.nl:not(.gh){display:none}}
-
-/* hero */
-header{padding:66px 0 48px;text-align:center;border-bottom:1px solid var(--line)}
-.logo-big{display:inline-flex;gap:9px;margin-bottom:22px}
-.logo-big span{width:40px;height:48px;border:5px solid var(--white);border-radius:11px}
-.logo-big span:nth-child(2),.logo-big span:nth-child(4){border-color:var(--green);box-shadow:0 0 18px rgba(62,255,160,.35)}
-header h1{font-family:var(--mono);font-size:clamp(30px,6vw,46px);font-weight:700;letter-spacing:.01em}
-header h1 .os{color:var(--green)}
-.tagline{color:var(--muted);font-size:17px;max-width:540px;margin:14px auto 28px}
-.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;font-family:var(--mono);font-size:12.5px}
-.badge{color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:5px 11px}
-.badge b{color:var(--green)}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{font-family:var(--mono);font-size:14px;font-weight:600;padding:11px 20px;border-radius:9px;border:1px solid var(--line);transition:.18s;cursor:pointer}
-.btn.primary{background:var(--green);color:#06140d;border-color:var(--green)}
-.btn.primary:hover{box-shadow:0 0 22px rgba(62,255,160,.4)}
-.btn.ghost{color:var(--text)}
-.btn.ghost:hover{border-color:var(--green);color:var(--green)}
-
-/* sections */
-section{padding:48px 0;border-bottom:1px solid var(--line)}
-h2{font-family:var(--mono);font-size:15px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:22px}
-h2::before{content:"# ";color:var(--greendim)}
-.rows{display:grid;gap:2px}
-.row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline}
-.row:first-child{border-top:none}
-.row .k{font-family:var(--mono);color:var(--green);font-size:14px;font-weight:500}
-.row .v{color:var(--muted);font-size:15px}
-.row .v b{color:var(--text);font-weight:600}
-@media(max-width:560px){.row{grid-template-columns:1fr;gap:3px}}
-
-.apps-row{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:var(--mono);font-size:13px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 13px}
-.pill.green{color:var(--green);border-color:var(--greendim)}
-
-/* install */
-ol.steps{list-style:none;counter-reset:s;display:grid;gap:12px}
-ol.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline}
-ol.steps li::before{content:counter(s);font-family:var(--mono);color:var(--green);font-weight:700;flex:0 0 22px}
-ol.steps li div{color:var(--muted)}
-ol.steps b{color:var(--text)}
-code{font-family:var(--mono);background:#071410;border:1px solid var(--line);color:var(--green);padding:2px 7px;border-radius:5px;font-size:13.5px}
-.note{font-family:var(--mono);font-size:13.5px;color:var(--muted);background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:16px 18px;margin-top:24px}
-.note b{color:var(--text)}
-
-footer{padding:36px 0;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px}
-.discl{font-size:11.5px;color:#5a6f64;max-width:620px;margin:14px auto 0;line-height:1.7}
-</style>
+</script>
 </head>
-<body>
+<body class="home">
 
-<nav><div class="wrap">
-  <div class="logo"><span></span><span></span><span></span><span></span></div>
-  <span class="brand-name">DODO<b> OS</b></span>
-  <span class="sp"></span>
-  <a href="#features" class="nl">Функции</a>
-  <a href="#install" class="nl">Инсталиране</a>
-  <a href="https://github.com/gpsn0w/oneplus" class="nl gh" target="_blank">GitHub</a>
-</div></nav>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-<header><div class="wrap">
-  <div class="logo-big"><span></span><span></span><span></span><span></span></div>
-  <h1>DODO <span class="os">OS</span></h1>
-  <p class="tagline">Privacy Android за OnePlus Nord N100. Google само в sandbox — всичко останало остава при теб.</p>
-  <div class="badges">
-    <span class="badge">📱 <b>billie2</b></span>
-    <span class="badge">🤖 Android <b>15</b></span>
-    <span class="badge">📶 Поправено <b>WiFi</b></span>
-    <span class="badge">🚫 <b>De-Googled</b></span>
-  </div>
-  <div class="cta">
-    <a href="https://github.com/gpsn0w/oneplus/releases" class="btn primary" target="_blank">↓ Изтегли ROM-а</a>
-    <a href="#install" class="btn ghost">Как да инсталирам</a>
-  </div>
-</div></header>
+<header class="hud-bar">
+	<a class="brand" href="#top"><img src="logo.png" alt="DODO OS"><span class="name">DODO OS</span><span class="brand-beta" data-en="for OnePlus N100">за OnePlus N100</span></a>
+	<button class="nav-toggle" id="navToggle" aria-expanded="false">≡</button>
+	<nav class="nav" id="nav">
+		<a href="#what" data-en="What it is">Какво е</a>
+		<a href="#features" data-en="Inside">Вътре</a>
+		<a href="#privacy" data-en="Privacy">Поверителност</a>
+		<a href="#versions" data-en="Versions">Версии</a>
+		<a href="#download" data-en="Download">Изтегляне</a>
+		<a href="#install" data-en="Install">Инсталиране</a>
+		<a href="#updates" data-en="What's new">Новото</a>
+	</nav>
+	<button class="lang-toggle" id="langToggle" aria-label="Език / Language">
+		<span class="lang-bg on">BG</span><span class="lang-sep">|</span><span class="lang-en">EN</span>
+	</button>
+	<div class="bar-clock" id="barClock">--:--:--</div>
+</header>
 
-<section id="features"><div class="wrap">
-  <h2>Функции</h2>
-  <div class="rows">
-    <div class="row"><div class="k">microG</div><div class="v">Google услуги в <b>sandbox</b> — приложенията работят, Google кодът не се пуска.</div></div>
-    <div class="row"><div class="k">Duress код</div><div class="v">Таен PIN, който <b>изтрива</b> телефона вместо да го отключи.</div></div>
-    <div class="row"><div class="k">USB-C защита</div><div class="v">При заключен телефон USB портът <b>само зарежда</b> — без данни.</div></div>
-    <div class="row"><div class="k">Авто-изтриване</div><div class="v">След N грешни опита или дни без отключване — <b>трие се сам</b>.</div></div>
-    <div class="row"><div class="k">Профили</div><div class="v">Изолирани „светове" на един телефон, всеки с <b>отделно криптиране</b>.</div></div>
-    <div class="row"><div class="k">Криптиране</div><div class="v">Всичките данни криптирани <b>по подразбиране</b>, без настройки.</div></div>
-  </div>
-</div></section>
+<main id="main">
 
-<section id="apps"><div class="wrap">
-  <h2>Вградени приложения</h2>
-  <div class="apps-row">
-    <span class="pill">F-Droid</span>
-    <span class="pill">Aurora Store</span>
-    <span class="pill">Wasted</span>
-    <span class="pill">Duress</span>
-    <span class="pill green">DODO Launcher</span>
-    <span class="pill green">DODO Dialer</span>
-  </div>
-</div></section>
+<section class="hero" id="top">
+	<div class="wrap">
+		<div class="hero-copy">
+			<div class="status load-1"><span class="dot"></span> <span data-en="PRIVACY, BUILT IN">ПОВЕРИТЕЛНОСТ, ВГРАДЕНА</span></div>
+			<h1 class="load-2">DO<b>DO</b> OS</h1>
+			<p class="tagline load-3" data-en="A private Android for the OnePlus Nord N100. No Google tracking. Everything stays yours.">Приватен Android за OnePlus Nord N100. Без Google следене. Всичко е твое.</p>
+			<div class="cta load-4">
+				<a class="btn" href="#download" data-en="▼ Download free">▼ Изтегли безплатно</a>
+				<a class="btn ghost" href="#install" data-en="How to install">Как се инсталира</a>
+			</div>
+		</div>
+		<div class="hero-core-holder load-core"><div id="dodo-hero-core"></div></div>
+	</div>
+	<a class="scroll-hint" href="#what"><span data-en="DOWN">НАДОЛУ</span><span>▾</span></a>
+</section>
 
-<section id="install"><div class="wrap">
-  <h2>Инсталиране</h2>
-  <ol class="steps">
-    <li><div>Отключи bootloader-а: <b>Developer options → OEM unlocking</b>, после <code>fastboot flashing unlock</code></div></li>
-    <li><div>Boot в recovery → <b>Apply Update → Apply from ADB</b></div></li>
-    <li><div>На компютъра: <code>adb sideload dodo-os-billie2.zip</code></div></li>
-    <li><div><b>Reboot system now</b> — и WiFi работи 🎉</div></li>
-  </ol>
-  <div class="note">⚠️ <b>Честно:</b> bootloader-ът на N100 не може да се заключи пак с твой ключ (хардуерно), затова DODO OS не дава verified boot като GrapheneOS. Но privacy, sandbox и изтриване работят напълно.</div>
-</div></section>
+<div class="ticker" aria-hidden="true">
+	<div class="ticker-track">
+		<span data-en="No Google tracking">Без Google следене</span><span data-en="Material You">Material You</span><span data-en="Signal">Signal</span><span data-en="DuckDuckGo">DuckDuckGo</span><span data-en="Own app store">Собствен магазин</span><span data-en="Hardened kernel">Подсилено ядро</span><span data-en="WireGuard">WireGuard</span><span data-en="WiFi fixed">WiFi оправен</span>
+		<span data-en="No Google tracking">Без Google следене</span><span data-en="Material You">Material You</span><span data-en="Signal">Signal</span><span data-en="DuckDuckGo">DuckDuckGo</span><span data-en="Own app store">Собствен магазин</span><span data-en="Hardened kernel">Подсилено ядро</span><span data-en="WireGuard">WireGuard</span><span data-en="WiFi fixed">WiFi оправен</span>
+	</div>
+</div>
 
-<footer><div class="wrap">
-  <div class="logo" style="justify-content:center;display:inline-flex"><span></span><span></span><span></span><span></span></div>
-  <p style="margin-top:12px">DODO OS · Open-source · Apache 2.0 · 🦤</p>
-  <p style="margin-top:4px"><a href="https://github.com/gpsn0w/oneplus">GitHub</a> · <a href="https://gpsn0w.github.io/DODO/">DODO Assistant</a> · Габриел Жечев</p>
-  <p class="discl">DODO OS не е свързан с Google, OnePlus или GrapheneOS. Android е търговска марка на Google LLC. Флашването на custom ROM изтрива данни и може да анулира гаранцията.</p>
-</div></footer>
+<section class="section" id="what">
+	<div class="wrap">
+		<div class="demo-grid">
+			<div class="reveal">
+				<span class="eyebrow" data-en="Your phone">Твоят телефон</span>
+				<h2 data-en="Your phone. Your rules.">Твоят телефон. Твоите правила.</h2>
+				<p style="margin-top:14px;color:rgba(var(--rgb-mint),0.85)" data-en="DODO OS is a private Android system for the OnePlus Nord N100, based on LineageOS 22.2 (Android 15). Google tracking removed, privacy built into the kernel.">DODO OS е приватна Android система за OnePlus Nord N100, базирана на LineageOS 22.2 (Android 15). Google следенето е махнато, защитата е вградена в ядрото.</p>
+				<div class="stats">
+					<div class="stat reveal"><div class="num" data-count="100">100</div><div class="lab" data-en="% yours">% твое</div></div>
+					<div class="stat reveal"><div class="num" data-count="0">0</div><div class="lab" data-en="Google tracking">Google следене</div></div>
+					<div class="stat reveal"><div class="num">🔒</div><div class="lab" data-en="in the kernel">в ядрото</div></div>
+					<div class="stat reveal"><div class="num">15</div><div class="lab" data-en="Android version">Android версия</div></div>
+				</div>
+			</div>
+			<div class="terminal reveal" id="demoTerminal">
+				<div class="term-head"><i></i><i></i><i></i><span class="tt" data-en="DODO OS · build">DODO OS · билд</span></div>
+				<div class="term-body" id="termBody">
+					<div class="line you" data-en="device">устройство</div>
+					<div class="line dodo" data-en="OnePlus Nord N100 (billie2)">OnePlus Nord N100 (billie2)</div>
+					<div class="line you" data-en="base">база</div>
+					<div class="line dodo" data-en="LineageOS 22.2 · Android 15">LineageOS 22.2 · Android 15</div>
+					<div class="line you" data-en="google tracking">google следене</div>
+					<div class="line dodo" data-en="removed ✓">премахнато ✓</div>
+					<div class="line you" data-en="wifi">wifi</div>
+					<div class="line dodo" data-en="fixed ✓ (292 Mbps)">оправен ✓ (292 Mbps)</div>
+					<div class="line you" data-en="kernel">ядро</div>
+					<div class="line dodo" data-en="hardened · WireGuard · BBR">подсилено · WireGuard · BBR</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
+<div class="divider"></div>
+
+<section class="section" id="features">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<span class="eyebrow" data-en="Inside">Вътре</span>
+			<h2 data-en="Everything, built in">Всичко, вградено</h2>
+			<p data-en="A clean, private Android — with the things that matter already set up.">Чист, приватен Android — с нещата, които значат, вече готови.</p>
+		</div>
+		<div class="grid">
+			<div class="panel feature reveal tilt"><div class="ico">🎨</div><h3 data-en="Material You">Material You</h3><p data-en="Colors adapt to your wallpaper by default — a green DODO world out of the box.">Цветовете се нагаждат към тапета по подразбиране — зелен DODO свят от кутията.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">💬</div><h3 data-en="Signal">Signal</h3><p data-en="Encrypted messaging, set as the main messenger. Installs itself when you connect WiFi.">Криптирани съобщения, зададен като главен месинджър. Инсталира се сам щом хванеш WiFi.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🦆</div><h3 data-en="DuckDuckGo">DuckDuckGo</h3><p data-en="The default browser — no trackers, no ads following you around.">Браузърът по подразбиране — без тракери, без реклами, които те следват.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🔄</div><h3 data-en="DODO Store">DODO Магазин</h3><p data-en="Own updater — keeps Signal, F-Droid and Aurora fresh. Updates in place, your data is kept.">Собствен ъпдейтър — държи Signal, F-Droid и Aurora актуални. Ъпдейт на място, данните се пазят.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🛡</div><h3 data-en="Hardened kernel">Подсилено ядро</h3><p data-en="KASLR, dmesg restrict, strict RWX — plus WireGuard VPN and BBR for a faster, safer net.">KASLR, dmesg restrict, strict RWX — плюс WireGuard VPN и BBR за по-бърз и сигурен нет.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">📦</div><h3 data-en="microG">microG</h3><p data-en="Google apps work in a sandbox — the convenience, without handing Google your life.">Google приложенията работят в пясъчник — удобството, без да даваш живота си на Google.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🏪</div><h3 data-en="F-Droid · Aurora">F-Droid · Aurora</h3><p data-en="Open-source apps and Play apps anonymously — no account needed.">Open-source приложения и Play апове анонимно — без акаунт.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🧨</div><h3 data-en="Panic wipe">Паник изтриване</h3><p data-en="Wasted and Duress — a panic PIN or a trigger that clears everything in an emergency.">Wasted и Duress — паник PIN или тригер, който трие всичко при нужда.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">📶</div><h3 data-en="WiFi fixed">WiFi оправен</h3><p data-en="The N100's biggest problem — solved. Works from a clean flash, full speed.">Най-големият проблем на N100 — решен. Работи от чист флаш, пълна скорост.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🌍</div><h3 data-en="3 languages">3 езика</h3><p data-en="Bulgarian by default, plus German and English. Clean and focused.">Български по подразбиране, плюс немски и английски. Чисто и фокусирано.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🔋</div><h3 data-en="DODO status bar">DODO статус бар</h3><p data-en="Green battery with a charging animation, privacy dots for mic and camera.">Зелена батерия с анимация при зареждане, privacy индикатори за микрофон и камера.</p></div>
+			<div class="panel feature reveal tilt"><div class="ico">🧙</div><h3 data-en="DODO Setup">DODO настройка</h3><p data-en="A branded setup with the live kernel orb — not a copy of anything.">Брандирана настройка с живия орб на ядрото — не копие на нищо.</p></div>
+		</div>
+		<p class="pledge reveal" style="margin-top:30px" data-en="And it stays clean — open source, no bloat, no Google.">И остава чисто — open source, без bloat, без Google.</p>
+	</div>
+</section>
+
+<section class="section alt" id="privacy">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Privacy">Поверителност</span>
+			<h2 data-en="Protection in the kernel">Защита в ядрото</h2>
+			<p data-en="The protections aren't apps you toggle — they're built into the kernel and always on.">Защитите не са приложения, които включваш — вградени са в ядрото и са винаги активни.</p>
+		</div>
+		<div class="flow reveal">
+			<span class="flow-node" data-en="🛡 Tracker blocking">🛡 Блокиране на тракери</span>
+			<span class="arr">·<small>в ядрото</small></span>
+			<span class="flow-node machine" data-en="🔒 USB wipe while locked">🔒 USB wipe при заключване</span>
+			<span class="arr">·<small>в ядрото</small></span>
+			<span class="flow-node" data-en="🌐 WireGuard VPN">🌐 WireGuard VPN</span>
+		</div>
+		<div class="flow reveal" style="margin-top:20px">
+			<span class="flow-node out" data-en="No account · No cloud · No Google">Без акаунт · Без облак · Без Google</span>
+		</div>
+	</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="versions">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Two versions">Две версии</span>
+			<h2 data-en="One for everyone, one for power users">Една за всички, една за напредналите</h2>
+			<p data-en="Same clean base. The personal build adds developer and security tools.">Една и съща чиста база. Личната версия добавя инструменти за разработка и сигурност.</p>
+		</div>
+		<div class="download-grid">
+			<div class="panel feature reveal"><div class="ico">🌍</div><h3 data-en="Global">Глобална</h3><p data-en="For everyone. Full DODO setup, Material You, Signal, DuckDuckGo, DODO Store, hardened kernel.">За всички. Пълна DODO настройка, Material You, Signal, DuckDuckGo, DODO Магазин, подсилено ядро.</p></div>
+			<div class="panel feature reveal"><div class="ico">🔒</div><h3 data-en="Personal">Лична</h3><p data-en="Everything in Global, plus: skips setup, Magisk root, Kali NetHunter kernel, ICS keyboard. For your own security research.">Всичко от глобалната, плюс: без setup, Magisk root, Kali NetHunter ядро, ICS клавиатура. За твои собствени изследвания по сигурност.</p></div>
+		</div>
+	</div>
+</section>
+
+<section class="section" id="download">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Download">Изтегляне</span>
+			<h2 data-en="Get DODO OS">Вземи DODO OS</h2>
+			<p data-en="Flashable zips for the OnePlus Nord N100 (BE2013 / billie2).">Флашваеми зипове за OnePlus Nord N100 (BE2013 / billie2).</p>
+		</div>
+		<div class="download-grid">
+			<div class="panel dl reveal"><div class="os">🌍</div><h3 data-en="Global">Глобална</h3><div class="ver" data-en="LineageOS 22.2 · Android 15">LineageOS 22.2 · Android 15</div><a class="btn" href="https://github.com/gpsn0w/oneplus/releases" data-en="▼ Download Global">▼ Изтегли Глобална</a><div class="note">billie2 · ~1.2 GB</div></div>
+			<div class="panel dl reveal"><div class="os">🔒</div><span class="beta-tag">root</span><h3 data-en="Personal">Лична</h3><div class="ver" data-en="NetHunter · Magisk">NetHunter · Magisk</div><a class="btn" href="https://github.com/gpsn0w/oneplus/releases" data-en="▼ Download Personal">▼ Изтегли Лична</a><div class="note" data-en="billie2 · root · ~1.2 GB">billie2 · root · ~1.2 GB</div></div>
+			<div class="panel dl reveal"><div class="os">⌨</div><h3 data-en="Source">Код</h3><div class="ver" data-en="open source">отворен код</div><a class="btn ghost" href="https://github.com/gpsn0w/oneplus" data-en="View on GitHub">Виж в GitHub</a><div class="note" data-en="device tree · kernel · vendor">device tree · ядро · vendor</div></div>
+		</div>
+		<p class="pledge reveal" data-en="🔒 &lt;b&gt;Promise:&lt;/b&gt; DODO OS has no Google tracking and sells nothing. It is open source — you can read every line.">🔒 <b>Обещание:</b> DODO OS няма Google следене и не продава нищо. Отворен код е — можеш да прочетеш всеки ред.</p>
+	</div>
+</section>
+
+<section class="section alt" id="install">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Install">Инсталиране</span>
+			<h2 data-en="How to flash">Как се флашва</h2>
+			<p data-en="Three steps. Back up first — flashing erases the phone.">Три стъпки. Направи backup първо — флашването трие телефона.</p>
+		</div>
+		<div class="steps">
+			<div class="step reveal"><div class="step-no">1</div><h3 data-en="Unlock the bootloader">Отключи bootloader</h3><p data-en="Enable OEM unlocking and USB debugging, then fastboot flashing unlock.">Включи OEM unlocking и USB debugging, после fastboot flashing unlock.</p></div>
+			<div class="step reveal"><div class="step-no">2</div><h3 data-en="Flash recovery + ROM">Флашни recovery + ROM</h3><p data-en="Boot the DODO recovery, then sideload or flash the DODO OS zip.">Зареди DODO recovery, после sideload или флашни DODO OS зипа.</p></div>
+			<div class="step reveal"><div class="step-no">3</div><h3 data-en="Done">Готово</h3><p data-en="Reboot. Connect WiFi and DODO sets itself up — Signal installs automatically.">Рестартирай. Свържи WiFi и DODO се настройва сам — Signal се инсталира автоматично.</p></div>
+		</div>
+	</div>
+</section>
+
+<section class="section" id="updates">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="What's new">Новото</span>
+			<h2 data-en="What's new in each build">Какво ново във всеки билд</h2>
+			<p data-en="DODO OS keeps getting better. Here's what each build brings.">DODO OS става по-добър. Ето какво носи всеки билд.</p>
+		</div>
+		<div class="changelog">
+			<div class="release panel reveal">
+				<div class="release-head">
+					<span class="release-ver">22-20261023</span>
+					<span class="release-tag latest" data-en="latest">най-нов</span>
+				</div>
+				<ul class="release-list">
+					<li data-en="🏪 &lt;b&gt;DODO Store&lt;/b&gt; — own updater; installs Signal automatically on first WiFi.">🏪 <b>DODO Магазин</b> — собствен ъпдейтър; инсталира Signal автоматично при първи WiFi.</li>
+					<li data-en="🎨 &lt;b&gt;Material You by default&lt;/b&gt; — green from the DODO wallpaper.">🎨 <b>Material You по подразбиране</b> — зелено от DODO тапета.</li>
+					<li data-en="🦆 &lt;b&gt;DuckDuckGo&lt;/b&gt; — set as the default browser, Jelly removed.">🦆 <b>DuckDuckGo</b> — зададен като браузър по подразбиране, Jelly махнат.</li>
+					<li data-en="🏷 &lt;b&gt;Full rebrand&lt;/b&gt; — “DODO OS” everywhere in Settings; BG default (+ DE/EN).">🏷 <b>Пълен rebrand</b> — „DODO OS" навсякъде в настройките; BG по подразбиране (+ DE/EN).</li>
+					<li data-en="⌨️ &lt;b&gt;DODO keyboard&lt;/b&gt; — stock AOSP keyboard themed black / white / green.">⌨️ <b>DODO клавиатура</b> — стокова AOSP клавиатура в черно / бяло / зелено.</li>
+				</ul>
+			</div>
+			<div class="release panel reveal">
+				<div class="release-head">
+					<span class="release-ver" data-en="WiFi fix">WiFi fix</span>
+				</div>
+				<ul class="release-list">
+					<li data-en="📶 &lt;b&gt;WiFi works&lt;/b&gt; — the N100's main blocker fixed; full speed from a clean flash.">📶 <b>WiFi работи</b> — главният блокер на N100 оправен; пълна скорост от чист флаш.</li>
+					<li data-en="🛡 &lt;b&gt;Hardened kernel&lt;/b&gt; — WireGuard, BBR, KASLR, dmesg restrict.">🛡 <b>Подсилено ядро</b> — WireGuard, BBR, KASLR, dmesg restrict.</li>
+					<li data-en="🐉 &lt;b&gt;NetHunter kernel&lt;/b&gt; — for the personal build (pentesting).">🐉 <b>NetHunter ядро</b> — за личната версия (pentesting).</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+</main>
+
+<footer class="foot">
+	<div class="wrap">
+		<div class="foot-brand">DO<b>DO</b> OS</div>
+		<p data-en="Private Android for the OnePlus Nord N100. Open source.">Приватен Android за OnePlus Nord N100. Отворен код.</p>
+		<p style="margin-top:8px"><a href="https://github.com/gpsn0w/oneplus">GitHub</a> · <a href="https://gpsn0w.github.io/DODO/">DODO Assistant</a> · Габриел Жечев</p>
+	</div>
+</footer>
+
+<script src="guard.js?v=1"></script>
+<script src="three.min.js"></script>
+<script src="hero-core.js?v=4"></script>
+<script src="bg-field.js?v=4"></script>
+<script src="site.js?v=10"></script>
 </body>
 </html>
