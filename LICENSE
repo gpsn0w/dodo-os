@@ -1,0 +1,67 @@
+Copyright (c) 2026 Габриел Жечев (Gabriel Zhechev / gpsn0w)
+
+DODO OS — приватен Android за OnePlus Nord N100
+https://gpsn0w.github.io/dodo-os/
+https://github.com/gpsn0w/dodo-os
+
+================================================================================
+                     DUAL LICENSING — КОД + ТЪРГОВСКА МАРКА
+================================================================================
+
+1. КОД / SOURCE CODE — GNU Affero General Public License v3.0 (AGPL-3.0)
+   ----------------------------------------------------------------------
+   The source code of DODO OS (device trees, vendor overlay, Dodo Store app,
+   DodoBootCheck app, SetupWizard customizations, kernel patches, build
+   scripts and all other code I authored) is licensed under the terms of the
+   GNU Affero General Public License, version 3, as published by the Free
+   Software Foundation.
+
+   This means you MAY:
+   - use, study, copy, modify and redistribute the source code;
+   - distribute modified versions, PROVIDED that:
+     * you release your changes under AGPL-3.0 as well;
+     * you keep the copyright notice and this license notice;
+     * you clearly state the changes you made;
+     * if you OFFER THE MODIFIED SOFTWARE OVER A NETWORK AS A SERVICE,
+       you MUST make the complete modified source code available to all
+       users of that service — this is the key difference from GPLv3.
+
+   Full license text: https://www.gnu.org/licenses/agpl-3.0.txt
+
+   Portions of the project are based on LineageOS (Apache-2.0) and the
+   Android Open Source Project (Apache-2.0 / GPL-2.0 for the kernel).
+   Those portions remain under their original licenses.
+
+2. ИМЕ, ЛОГО, ДИЗАЙН НА САЙТА — All Rights Reserved
+   ------------------------------------------------
+   The following are NOT covered by the AGPL and are explicitly reserved:
+   - the name "DODO OS" and "DODO" (as applied to this project);
+   - the DODO logo (the green orb icon, logo-dodo-os.png);
+   - the visual design, HTML/CSS/JS of the website at
+     https://gpsn0w.github.io/dodo-os/ ;
+   - the DODO wallpaper art.
+
+   You MAY NOT:
+   - redistribute a fork of this ROM under the name "DODO OS" or using the
+     DODO logo without written permission;
+   - clone the website design, orb animation, wallpaper or branding assets
+     for other projects.
+
+   If you fork the code, please rebrand it with your own name and logo.
+
+3. КОНТАКТ / CONTACT
+   ------------------
+   Author / Автор: Габриел Жечев (Gabriel Zhechev)
+   Email: gzhechevpro@gmail.com
+   GitHub: https://github.com/gpsn0w
+
+================================================================================
+                              NO WARRANTY
+================================================================================
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. FLASHING CUSTOM FIRMWARE
+IS AT YOUR OWN RISK AND MAY VOID YOUR WARRANTY.
+
+================================================================================
