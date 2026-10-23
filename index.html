@@ -16,14 +16,14 @@
 <meta property="og:title" content="DODO OS — твоят Android за OnePlus N100">
 <meta property="og:description" content="Приватна Android ОС за OnePlus Nord N100. Без Google следене, Material You, собствен магазин, подсилено ядро.">
 <meta property="og:url" content="https://gpsn0w.github.io/oneplus/">
-<meta property="og:image" content="https://gpsn0w.github.io/oneplus/logo.png">
+<meta property="og:image" content="https://gpsn0w.github.io/oneplus/logo-dodo-os.png">
 <meta property="og:locale" content="bg_BG">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DODO OS — твоят Android за OnePlus N100">
 <meta name="twitter:description" content="Приватна Android ОС. Без Google следене, всичко остава при теб.">
-<meta name="twitter:image" content="https://gpsn0w.github.io/oneplus/logo.png">
+<meta name="twitter:image" content="https://gpsn0w.github.io/oneplus/logo-dodo-os.png">
 
-<link rel="icon" href="logo.png" type="image/png">
+<link rel="icon" href="logo-dodo-os.png" type="image/png">
 <link rel="stylesheet" href="style.css?v=16">
 
 <script type="application/ld+json">
@@ -46,7 +46,7 @@
       "applicationCategory": "OperatingSystem",
       "operatingSystem": "Android 15",
       "url": "https://gpsn0w.github.io/oneplus/",
-      "image": "https://gpsn0w.github.io/oneplus/logo.png",
+      "image": "https://gpsn0w.github.io/oneplus/logo-dodo-os.png",
       "description": "Приватна Android операционна система за OnePlus Nord N100, базирана на LineageOS 22.2.",
       "inLanguage": "bg",
       "author": { "@id": "https://gpsn0w.github.io/oneplus/#gabriel-zhechev" },
@@ -61,7 +61,7 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <header class="hud-bar">
-	<a class="brand" href="#top"><img src="logo.png" alt="DODO OS"><span class="name">DODO OS</span><span class="brand-beta" data-en="for OnePlus N100">за OnePlus N100</span></a>
+	<a class="brand" href="#top"><img src="logo-dodo-os.png" alt="DODO OS"><span class="name">DODO OS</span><span class="brand-beta" data-en="for OnePlus N100">за OnePlus N100</span></a>
 	<button class="nav-toggle" id="navToggle" aria-expanded="false">≡</button>
 	<nav class="nav" id="nav">
 		<a href="#what" data-en="What it is">Какво е</a>
@@ -69,6 +69,8 @@
 		<a href="#privacy" data-en="Privacy">Поверителност</a>
 		<a href="#download" data-en="Download">Изтегляне</a>
 		<a href="#install" data-en="Install">Инсталиране</a>
+		<a href="#screens" data-en="Screens">Снимки</a>
+		<a href="#build-your-own" data-en="For other phones">За други телефони</a>
 		<a href="#updates" data-en="What's new">Новото</a>
 		<a href="#about" data-en="About">За проекта</a>
 	</nav>
@@ -85,7 +87,7 @@
 		<div class="hero-copy">
 			<div class="status load-1"><span class="dot"></span> <span data-en="PRIVACY, BUILT IN">ПОВЕРИТЕЛНОСТ, ВГРАДЕНА</span></div>
 			<h1 class="load-2">DO<b>DO</b> OS</h1>
-			<p class="tagline load-3" data-en="Your Android for the OnePlus Nord N100. No Google tracking. Everything stays yours.">Твоят Android за OnePlus Nord N100. Без Google следене. Всичко е твое.</p>
+			<p class="tagline load-3" data-en="A clean Android, without Google. For the OnePlus Nord N100.">Чист Android, без Google. За OnePlus Nord N100.</p>
 			<div class="cta load-4">
 				<a class="btn" href="#download" data-en="▼ Download free">▼ Изтегли безплатно</a>
 				<a class="btn ghost" href="#install" data-en="How to install">Как се инсталира</a>
@@ -255,6 +257,79 @@ fastboot reboot recovery</pre>
 	</div>
 </section>
 
+<div class="divider"></div>
+
+<section class="section" id="screens">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="How it looks">Как изглежда</span>
+			<h2 data-en="See it on the phone">Виж как изглежда на телефона</h2>
+			<p data-en="Real screenshots from the phone, not a mock-up.">Истински снимки от телефона, не мокъп.</p>
+		</div>
+		<div class="shots-grid single">
+			<figure class="shot reveal"><img src="shots/01-home.png" alt=""><figcaption data-en="Home screen · the DODO look">Начален екран · DODO облика</figcaption></figure>
+		</div>
+	</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section alt" id="build-your-own">
+	<div class="wrap">
+		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+			<span class="eyebrow" data-en="Other phones">За други телефони</span>
+			<h2 data-en="Make it for your phone">Направи го за твоя телефон</h2>
+			<p data-en="DODO OS is open source. If you have another device — Pixel, Samsung, Xiaomi, Motorola — you can build your own DODO OS by swapping the device tree.">DODO OS е отворен код. Ако имаш друго устройство — Pixel, Samsung, Xiaomi, Motorola — можеш да си направиш твое DODO OS, като смениш device tree-то.</p>
+		</div>
+		<div class="guide">
+			<div class="guide-step panel reveal">
+				<div class="gn">1</div>
+				<div class="gt">
+					<h3 data-en="Find your device tree">Намери device tree за твоя телефон</h3>
+					<p data-en="Search LineageOS or GitHub for your codename (e.g. “lineage device <phone>”). You need: device tree + vendor tree + kernel source. Most popular phones have them maintained.">Търси в LineageOS или GitHub по името на твоя модел (напр. „lineage device &lt;телефон&gt;"). Трябват ти: device tree + vendor tree + kernel source. Повечето популярни телефони ги имат поддържани.</p>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">2</div>
+				<div class="gt">
+					<h3 data-en="Clone the DODO OS source">Клонирай източника на DODO OS</h3>
+					<p data-en="Get the LineageOS 22.2 base and the DODO vendor overlay:">Вземи LineageOS 22.2 база и DODO vendor overlay:</p>
+					<pre class="cmd">repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
+repo sync -j8
+git clone https://github.com/gpsn0w/oneplus vendor/dodo</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">3</div>
+				<div class="gt">
+					<h3 data-en="Add your device tree">Добави твоя device tree</h3>
+					<p data-en="Put the trees for your phone in device/&lt;brand&gt;/&lt;codename&gt; and kernel/&lt;brand&gt;/&lt;soc&gt;. Add vendor/dodo/dodo.mk to the device inherit list.">Сложи дърветата за твоя телефон в <code>device/&lt;марка&gt;/&lt;codename&gt;</code> и <code>kernel/&lt;марка&gt;/&lt;soc&gt;</code>. Включи <code>vendor/dodo/dodo.mk</code> в inherit списъка на устройството.</p>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">4</div>
+				<div class="gt">
+					<h3 data-en="Build">Компилирай</h3>
+					<p data-en="Pick your device and build the full ROM:">Избери устройството си и компилирай целия ROM:</p>
+					<pre class="cmd">source build/envsetup.sh
+lunch lineage_&lt;codename&gt;-bp1a-userdebug
+mka bacon</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">5</div>
+				<div class="gt">
+					<h3 data-en="Flash and share">Флашни и сподели</h3>
+					<p data-en="You get a signed zip for your device in out/target/product/&lt;codename&gt;/. Flash it the same way as the N100 ROM. If you add a new device — share it on GitHub so others can use it.">Получаваш подписан зип за твоето устройство в <code>out/target/product/&lt;codename&gt;/</code>. Флашваш го по същия начин като N100 ROM-а. Ако добавиш ново устройство — сподели го в GitHub, за да го ползват и други.</p>
+				</div>
+			</div>
+		</div>
+		<p class="pledge reveal" style="margin-top:26px" data-en="⚠ Compiling a ROM needs a strong computer (16GB+ RAM, 300GB disk, Linux). First build takes 2–5 hours. Not for beginners — but it's doable.">⚠ Компилирането на ROM иска силен компютър (16GB+ RAM, 300GB диск, Linux). Първият билд отнема 2–5 часа. Не е за начинаещи — но е постижимо.</p>
+	</div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="updates">
 	<div class="wrap">
 		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
@@ -314,7 +389,7 @@ fastboot reboot recovery</pre>
 
 <footer class="site-footer">
 	<div class="wrap">
-		<div class="fbrand"><img src="logo.png" alt=""><span>DODO OS</span></div>
+		<div class="fbrand"><img src="logo-dodo-os.png" alt=""><span>DODO OS</span></div>
 		<small data-en="© 2026 · Everything stays on your phone.">© 2026 · Всичко остава на твоя телефон.</small>
 		<small data-en="Open source · No Google tracking." style="opacity:.6;display:block;margin-top:4px;">Отворен код · Без Google следене.</small>
 	</div>

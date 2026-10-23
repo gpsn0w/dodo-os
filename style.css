@@ -1109,3 +1109,13 @@ body.lang-glitching::before {
   border-radius:10px; padding:12px 14px; font-family:var(--font-mono,monospace);
   font-size:13px; color:var(--green); white-space:pre-wrap; overflow-x:auto; line-height:1.75;
 }
+
+/* DODO: секция „Снимки" */
+.shots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:980px;margin:0 auto}
+.shots-grid.single{grid-template-columns:minmax(260px,320px);justify-content:center}
+.shot{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.shot img{width:100%;aspect-ratio:9/19.5;object-fit:cover;background:#000;border-radius:28px;
+  border:1.5px solid rgba(var(--rgb-green),0.25);
+  box-shadow:0 10px 40px rgba(0,0,0,.5), 0 0 24px rgba(var(--rgb-green),.08)}
+.shot figcaption{font-family:var(--font-mono,monospace);font-size:12px;letter-spacing:.5px;
+  color:rgba(var(--rgb-mint),.7);text-align:center}
