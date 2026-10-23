@@ -48,7 +48,7 @@ Dodo OS е custom Android дистрибуция, базирана на **Lineag
 | `prebuilt-apps/` | Конфигурация за pre-installed приложенията |
 
 ## Сайт
-🌐 **https://gpsn0w.github.io/oneplus/**
+🌐 **https://gpsn0w.github.io/dodo-os/**
 
 ## Лиценз
 Apache License 2.0 — виж [`LICENSE`](LICENSE), както AOSP/LineageOS.
