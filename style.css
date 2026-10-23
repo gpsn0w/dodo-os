@@ -1102,3 +1102,10 @@ body.lang-glitching::before {
     .about-grid { gap: 16px; }
     #about .panel { padding: 16px; }
 }
+
+/* DODO: команден блок в урока */
+.guide-step .gt .cmd{
+  margin:12px 0 0; background:#030b07; border:1px solid rgba(var(--rgb-green),0.22);
+  border-radius:10px; padding:12px 14px; font-family:var(--font-mono,monospace);
+  font-size:13px; color:var(--green); white-space:pre-wrap; overflow-x:auto; line-height:1.75;
+}

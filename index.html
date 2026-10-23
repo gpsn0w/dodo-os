@@ -70,6 +70,7 @@
 		<a href="#download" data-en="Download">Изтегляне</a>
 		<a href="#install" data-en="Install">Инсталиране</a>
 		<a href="#updates" data-en="What's new">Новото</a>
+		<a href="#about" data-en="About">За проекта</a>
 	</nav>
 	<button class="lang-toggle" id="langToggle" aria-label="Език / Language">
 		<span class="lang-bg on">BG</span><span class="lang-sep">|</span><span class="lang-en">EN</span>
@@ -84,7 +85,7 @@
 		<div class="hero-copy">
 			<div class="status load-1"><span class="dot"></span> <span data-en="PRIVACY, BUILT IN">ПОВЕРИТЕЛНОСТ, ВГРАДЕНА</span></div>
 			<h1 class="load-2">DO<b>DO</b> OS</h1>
-			<p class="tagline load-3" data-en="A private Android for the OnePlus Nord N100. No Google tracking. Everything stays yours.">Приватен Android за OnePlus Nord N100. Без Google следене. Всичко е твое.</p>
+			<p class="tagline load-3" data-en="Your Android for the OnePlus Nord N100. No Google tracking. Everything stays yours.">Твоят Android за OnePlus Nord N100. Без Google следене. Всичко е твое.</p>
 			<div class="cta load-4">
 				<a class="btn" href="#download" data-en="▼ Download free">▼ Изтегли безплатно</a>
 				<a class="btn ghost" href="#install" data-en="How to install">Как се инсталира</a>
@@ -204,14 +205,53 @@
 	<div class="wrap">
 		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
 			<span class="eyebrow" data-en="Install">Инсталиране</span>
-			<h2 data-en="How to flash">Как се флашва</h2>
-			<p data-en="Three steps. Back up first — flashing erases the phone.">Три стъпки. Направи backup първо — флашването трие телефона.</p>
+			<h2 data-en="How to flash — step by step">Как се флашва — стъпка по стъпка</h2>
+			<p data-en="For the OnePlus Nord N100 (BE2013 / billie2). Back up first — this erases the phone.">За OnePlus Nord N100 (BE2013 / billie2). Направи backup първо — това трие телефона.</p>
 		</div>
-		<div class="steps">
-			<div class="step reveal"><div class="step-no">1</div><h3 data-en="Unlock the bootloader">Отключи bootloader</h3><p data-en="Enable OEM unlocking and USB debugging, then fastboot flashing unlock.">Включи OEM unlocking и USB debugging, после fastboot flashing unlock.</p></div>
-			<div class="step reveal"><div class="step-no">2</div><h3 data-en="Flash recovery + ROM">Флашни recovery + ROM</h3><p data-en="Boot the DODO recovery, then sideload or flash the DODO OS zip.">Зареди DODO recovery, после sideload или флашни DODO OS зипа.</p></div>
-			<div class="step reveal"><div class="step-no">3</div><h3 data-en="Done">Готово</h3><p data-en="Reboot. Connect WiFi and DODO sets itself up — Signal installs automatically.">Рестартирай. Свържи WiFi и DODO се настройва сам — Signal се инсталира автоматично.</p></div>
+
+		<div class="guide">
+			<div class="guide-step panel reveal">
+				<div class="gn">0</div>
+				<div class="gt">
+					<h3 data-en="Prepare">Подготовка</h3>
+					<p data-en="On the phone: Settings → About → tap “Build number” 7 times to unlock Developer options. Then Developer options → turn on &lt;b&gt;OEM unlocking&lt;/b&gt; and &lt;b&gt;USB debugging&lt;/b&gt;. On the computer: install Android platform-tools (adb &amp; fastboot).">На телефона: Настройки → Относно → натисни „Номер на компилация" 7 пъти, за да отключиш „За програмисти". После → включи <b>OEM unlocking</b> и <b>USB debugging</b>. На компютъра: инсталирай Android platform-tools (adb и fastboot).</p>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">1</div>
+				<div class="gt">
+					<h3 data-en="Unlock the bootloader">Отключи bootloader</h3>
+					<p data-en="Plug the phone in and run — &lt;b&gt;this wipes the phone&lt;/b&gt; (confirm on the screen with the volume keys):">Включи телефона и изпълни — <b>това трие телефона</b> (потвърди на екрана с бутоните за звук):</p>
+					<pre class="cmd">adb reboot bootloader
+fastboot flashing unlock</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">2</div>
+				<div class="gt">
+					<h3 data-en="Flash the DODO recovery">Флашни DODO recovery</h3>
+					<p data-en="Download the boot/recovery image, then flash it and boot into recovery:">Свали boot/recovery образа, флашни го и влез в recovery:</p>
+					<pre class="cmd">fastboot flash boot DODO-GLOBAL-boot.img
+fastboot reboot recovery</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">3</div>
+				<div class="gt">
+					<h3 data-en="Wipe + sideload the ROM">Изчисти + sideload на ROM-а</h3>
+					<p data-en="In recovery: Factory reset → Format data. Then Apply update → Apply from ADB, and on the computer run:">В recovery: Factory reset → Format data. После Apply update → Apply from ADB, и на компютъра:</p>
+					<pre class="cmd">adb sideload DODO-GLOBAL.zip</pre>
+				</div>
+			</div>
+			<div class="guide-step panel reveal">
+				<div class="gn">4</div>
+				<div class="gt">
+					<h3 data-en="Reboot — done!">Рестарт — готово!</h3>
+					<p data-en="Reboot to system. Go through the DODO setup and connect WiFi — Signal installs itself and Material You turns green. Enjoy. 🦤">Рестартирай към системата. Мини през DODO настройката и свържи WiFi — Signal се инсталира сам, а Material You става зелено. Готово. 🦤</p>
+				</div>
+			</div>
 		</div>
+		<p class="pledge reveal" style="margin-top:26px" data-en="⚠ If the screen stays black or something goes wrong, you can always recover via EDL mode (Qualcomm 9008). Flashing has risks — do it carefully.">⚠ Ако екранът остане черен или нещо се обърка, винаги можеш да възстановиш през EDL режим (Qualcomm 9008). Флашването е на твой риск — внимавай.</p>
 	</div>
 </section>
 
@@ -249,13 +289,34 @@
 	</div>
 </section>
 
+<section class="section alt" id="about">
+	<div class="wrap">
+		<div class="section-head reveal"><span class="eyebrow" data-en="About">За проекта</span><h2 data-en="Who is behind DODO OS">Кой стои зад DODO OS</h2></div>
+		<div class="about-grid">
+			<div class="reveal">
+				<p data-en="DODO OS is built on one simple idea: your phone should be yours — fast, private, and free of tracking, not a window Google looks through.">DODO OS е направен с една проста идея: телефонът ти трябва да е твой — бърз, личен и без следене, а не прозорец, през който Google гледа.</p>
+				<p data-en="That is why the protections are built into the kernel and Google tracking is removed. It runs on your phone; nothing is sold, nothing goes to a cloud you don't control.">Затова защитите са вградени в ядрото, а Google следенето е махнато. Работи на твоя телефон; нищо не се продава, нищо не отива в облак, който не контролираш.</p>
+				<p data-en="The project keeps evolving and gets better with every build. It is fully open source.">Проектът се развива непрекъснато и става по-добър с всеки билд. Напълно отворен код е.</p>
+				<p data-en="DODO OS is created by &lt;b&gt;Gabriel Zhechev&lt;/b&gt;."><b>DODO OS</b> е създаден от <b>Габриел Жечев</b>.</p>
+			</div>
+			<div class="panel reveal">
+				<ul class="contact-list">
+					<li><span class="k" data-en="Creator">Създател</span><span class="v">Габриел Жечев</span></li>
+					<li><span class="k" data-en="Contact">Пиши ни</span><span class="v"><a href="mailto:gzhechevpro@gmail.com">gzhechevpro@gmail.com</a></span></li>
+					<li><span class="k" data-en="Code">Код</span><span class="v"><a href="https://github.com/gpsn0w/oneplus">github.com/gpsn0w/oneplus</a></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
 </main>
 
-<footer class="foot">
+<footer class="site-footer">
 	<div class="wrap">
-		<div class="foot-brand">DO<b>DO</b> OS</div>
-		<p data-en="Private Android for the OnePlus Nord N100. Open source.">Приватен Android за OnePlus Nord N100. Отворен код.</p>
-		<p style="margin-top:8px"><a href="https://github.com/gpsn0w/oneplus">GitHub</a> · <a href="https://gpsn0w.github.io/DODO/">DODO Assistant</a> · Габриел Жечев</p>
+		<div class="fbrand"><img src="logo.png" alt=""><span>DODO OS</span></div>
+		<small data-en="© 2026 · Everything stays on your phone.">© 2026 · Всичко остава на твоя телефон.</small>
+		<small data-en="Open source · No Google tracking." style="opacity:.6;display:block;margin-top:4px;">Отворен код · Без Google следене.</small>
 	</div>
 </footer>
 
