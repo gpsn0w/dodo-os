@@ -37,25 +37,48 @@
 				<div class="gn">1</div>
 				<div class="gt">
 					<h3>Подготви компютъра</h3>
-					<p>Трябва ти <b>Linux</b> (Ubuntu/Debian), <b>16GB+ RAM</b>, <b>~300GB</b> свободно и стабилен интернет. Инсталирай <code>git</code>, <code>repo</code> и Android <code>platform-tools</code> (adb &amp; fastboot). Windows/Mac не стават за самата компилация.</p>
+					<p>Компилацията <b>става само на Linux</b> — Windows и Mac не стават. Най-лесно е <b>Ubuntu 22.04 или 24.04</b> (или в dual-boot / виртуална машина). Нужни са ти:</p>
+					<p>💻 <b>16 GB RAM</b> (32 GB е по-добре) · <b>~300 GB</b> свободно място (идеално SSD) · бърз интернет (сваля се <b>над 100 GB</b> код).</p>
+					<p>Отвори терминала и инсталирай нужните инструменти:</p>
+					<pre class="cmd">sudo apt update
+sudo apt install -y git-core gnupg flex bison build-essential zip curl \
+  zlib1g-dev libc6-dev-i386 libncurses5 x11proto-core-dev libx11-dev \
+  lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig \
+  python3 openjdk-17-jdk</pre>
+					<p>Инсталирай и инструмента <code>repo</code> (с него се тегли сорс кодът) и <code>adb</code>/<code>fastboot</code>:</p>
+					<pre class="cmd">sudo apt install -y android-sdk-platform-tools-common adb fastboot
+mkdir -p ~/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo
+chmod a+x ~/bin/repo
+export PATH=~/bin:$PATH</pre>
+					<p>Накрая кажи на git кой си (иначе <code>repo</code> се оплаква):</p>
+					<pre class="cmd">git config --global user.name "Твоето Име"
+git config --global user.email "ti@example.com"</pre>
 				</div>
 			</div>
 
 			<div class="guide-step panel reveal">
 				<div class="gn">2</div>
 				<div class="gt">
-					<h3>Отключи bootloader-а</h3>
-					<p><b>Xiaomi:</b> влез с Mi акаунт на телефона → Настройки → „Статус на Mi Unlock", после пусни <b>Mi Unlock Tool</b> на компютъра. Xiaomi кара да <b>чакаш 7–30 дни</b> преди да позволи отключване.</p>
-					<p><b>Samsung:</b> Настройки → За програмисти → включи <b>OEM unlocking</b>. Samsung не ползва fastboot — флашва се с <b>Odin</b> (Windows) или <b>Heimdall</b> (Linux).</p>
-					<p>⚠️ Отключването на bootloader-а <b>трие телефона</b>.</p>
+					<h3>Отключи bootloader-а на телефона</h3>
+					<p>Bootloader-ът е „ключалката", която по подразбиране пуска само официалната фабрична система. Трябва да я отключиш, за да сложиш своя.</p>
+					<p>Първо на телефона: <b>Настройки → Относно телефона</b> → чукни <b>7 пъти</b> на „Номер на версията", за да отключиш „За програмисти". После в <b>За програмисти</b> включи <b>OEM unlocking</b> и <b>USB debugging</b>.</p>
+					<p><b>Xiaomi:</b> влез с Mi акаунт на телефона (Настройки → „Статус на Mi Unlock"), после пусни <b>Mi Unlock Tool</b> на Windows компютър. Xiaomi кара да <b>чакаш 7–30 дни</b>, преди да позволи отключването — няма как да се избегне.</p>
+					<p><b>Samsung:</b> стига да включиш OEM unlocking. Samsung <b>не ползва fastboot</b> — флашва се със специална програма <b>Odin</b> (Windows) или <b>Heimdall</b> (Linux).</p>
+					<p>⚠️ <b>Отключването трие целия телефон</b> (снимки, чатове, всичко). Направи си бекъп преди това.</p>
 				</div>
 			</div>
 
 			<div class="guide-step panel reveal">
 				<div class="gn">3</div>
 				<div class="gt">
-					<h3>Намери дърветата за твоя модел</h3>
-					<p>Открий <b>codename</b>-а на телефона (напр. Mi A3 = <code>laurel_sprout</code>). Потърси в <a href="https://wiki.lineageos.org/devices/" target="_blank" rel="noopener">LineageOS wiki</a> или GitHub. Трябват ти три неща: <b>device tree</b>, <b>vendor</b> (проприетарните блобове — обикновено от TheMuppets) и <b>kernel source</b>.</p>
+					<h3>Намери „дърветата" за твоя точен модел</h3>
+					<p>Всеки телефон си има кодово име (<b>codename</b>). Виж го така (при включено USB debugging и закачен телефон):</p>
+					<pre class="cmd">adb shell getprop ro.product.device</pre>
+					<p>Напр. Xiaomi Mi A3 = <code>laurel_sprout</code>. После потърси трите неща, нужни за твоя codename, в <a href="https://wiki.lineageos.org/devices/" target="_blank" rel="noopener">LineageOS wiki</a>, GitHub или XDA форума:</p>
+					<p>🌳 <b>device tree</b> — описва хардуера на телефона.<br>
+					📦 <b>vendor</b> — затворените драйвери (blobs), обикновено от <b>TheMuppets</b>.<br>
+					🧩 <b>kernel source</b> — ядрото на Linux за този модел.</p>
 					<p class="req-qc">⚠️ <b>Задължително Qualcomm (Snapdragon) устройство</b> — не Exynos, не MediaTek. DODO е правено и тествано само на Qualcomm; само там работят правилно ядрото, USB защитите и NetHunter. При <b>Samsung</b> избери <b>Snapdragon</b> варианта (често международните/US модели), не Exynos.</p>
 				</div>
 			</div>
@@ -63,12 +86,24 @@
 			<div class="guide-step panel reveal">
 				<div class="gn">4</div>
 				<div class="gt">
-					<h3>Клонирай DODO базата</h3>
-					<p>Вземи LineageOS 22.2 (Android 15) и DODO overlay-а:</p>
-					<pre class="cmd">repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
-repo sync -j8
+					<h3>Свали DODO базата (сорс кода)</h3>
+					<p>Направи папка и изтегли LineageOS 22.2 (Android 15) плюс DODO overlay-а. <b>Първото теглене е дълго</b> (над 100 GB, час-два според интернета):</p>
+					<pre class="cmd">mkdir -p ~/dodo && cd ~/dodo
+repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
+repo sync -c -j8
 git clone https://github.com/gpsn0w/dodo-os vendor/dodo</pre>
-					<p>Добави дърветата на твоя телефон през <code>.repo/local_manifests/&lt;codename&gt;.xml</code> и пусни <code>repo sync</code> пак.</p>
+					<p>Сега кажи на кода откъде да вземе дърветата за твоя телефон. Направи файл <code>.repo/local_manifests/roomservice.xml</code> и сложи вътре редове като тези (с твоите реални линкове и codename):</p>
+					<pre class="cmd">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;manifest&gt;
+  &lt;project name="LineageOS/android_device_ПРОИЗВОДИТЕЛ_CODENAME"
+           path="device/ПРОИЗВОДИТЕЛ/CODENAME" remote="github" /&gt;
+  &lt;project name="TheMuppets/proprietary_vendor_ПРОИЗВОДИТЕЛ_CODENAME"
+           path="vendor/ПРОИЗВОДИТЕЛ/CODENAME" remote="github" /&gt;
+  &lt;project name="LineageOS/android_kernel_ПРОИЗВОДИТЕЛ_ЧИПСЕТ"
+           path="kernel/ПРОИЗВОДИТЕЛ/ЧИПСЕТ" remote="github" /&gt;
+&lt;/manifest&gt;</pre>
+					<p>После дръпни и тези нови дървета:</p>
+					<pre class="cmd">repo sync -c -j8</pre>
 				</div>
 			</div>
 
@@ -76,43 +111,49 @@ git clone https://github.com/gpsn0w/dodo-os vendor/dodo</pre>
 				<div class="gn">5</div>
 				<div class="gt">
 					<h3>Включи DODO overlay-а</h3>
-					<p>В <code>device/&lt;марка&gt;/&lt;codename&gt;/lineage_&lt;codename&gt;.mk</code> добави един ред:</p>
+					<p>За да получи телефонът ти DODO приложенията, overlay-ите, microG и настройките, добави <b>един ред</b> накрая на файла<br><code>device/ПРОИЗВОДИТЕЛ/CODENAME/lineage_CODENAME.mk</code>:</p>
 					<pre class="cmd">$(call inherit-product-if-exists, vendor/dodo/dodo.mk)</pre>
-					<p>Така устройството ти получава DODO приложенията, overlay-ите, microG и настройките.</p>
+					<p>💡 Това е цялата магия на DODO — един ред, който „закача" целия overlay върху чистия LineageOS.</p>
 				</div>
 			</div>
 
 			<div class="guide-step panel reveal">
 				<div class="gn">6</div>
 				<div class="gt">
-					<h3>Компилирай</h3>
-					<p>LineageOS сам хваща правилната версия през <code>breakfast</code> — не е нужно да помниш release кода:</p>
+					<h3>Компилирай системата</h3>
+					<p>Зареди build средата и пусни компилацията. LineageOS сам хваща правилната версия през <code>breakfast</code> — не е нужно да помниш release кода:</p>
 					<pre class="cmd">source build/envsetup.sh
-breakfast &lt;codename&gt;
-brunch &lt;codename&gt;</pre>
-					<p>Първият билд отнема 2–5 часа. Готовият зип е в <code>out/target/product/&lt;codename&gt;/</code>.</p>
+breakfast CODENAME
+brunch CODENAME</pre>
+					<p>⏳ <b>Първият билд отнема 2–5 часа</b> (следващите са много по-бързи). Компютърът ще се натовари силно — това е нормално.</p>
+					<p>Като свърши, готовият zip е тук:<br><code>out/target/product/CODENAME/lineage-22.2-*.zip</code></p>
+					<p>💡 Ако нещо гръмне, прочети <b>последните редове</b> в терминала — там пише кой модул е паднал и защо.</p>
 				</div>
 			</div>
 
 			<div class="guide-step panel reveal">
 				<div class="gn">7</div>
 				<div class="gt">
-					<h3>Флашни</h3>
-					<p><b>Xiaomi:</b> <code>fastboot</code> за recovery-то, после sideload на зипа. <b>Samsung:</b> <code>Odin</code> / <code>Heimdall</code>. Бекъпни данните си първо — флашването трие телефона.</p>
+					<h3>Флашни зипа на телефона</h3>
+					<p>⚠️ Флашването <b>трие телефона</b> — бекъпни си данните първо.</p>
+					<p><b>Xiaomi / Qualcomm:</b> зареди телефона в recovery, направи <b>Factory reset / Format data</b>, после от компютъра:</p>
+					<pre class="cmd">adb sideload out/target/product/CODENAME/lineage-22.2-*.zip</pre>
+					<p><b>Samsung:</b> флашни през <b>Odin</b> (Windows) или <b>Heimdall</b> (Linux) — fastboot не работи при Samsung.</p>
+					<p>След флашването рестартирай. Първото стартиране е бавно (1–2 мин) — нормално е.</p>
 				</div>
 			</div>
 
 			<div class="guide-step panel reveal">
 				<div class="gn">8</div>
 				<div class="gt">
-					<h3>Публикувай в GitHub</h3>
+					<h3>Публикувай в GitHub (по желание)</h3>
 					<p>Сподели билда си, за да го ползват и други хора с твоя телефон:</p>
-					<pre class="cmd">gh repo create dodo-os-&lt;codename&gt; --public
+					<pre class="cmd">gh repo create dodo-os-CODENAME --public
 gh release create v1 \
-  out/target/product/&lt;codename&gt;/lineage-*.zip \
-  --title "DODO OS · &lt;codename&gt;" \
+  out/target/product/CODENAME/lineage-22.2-*.zip \
+  --title "DODO OS · CODENAME" \
   --notes "Android 15 · DODO overlay · неофициален билд"</pre>
-					<p>⚠️ Качвай само <b>чистата</b> версия (без root и лични неща). Опиши устройството, версията и че е неофициален билд в release бележките.</p>
+					<p>⚠️ Качвай само <b>чистата</b> версия (без root и без лични неща вътре). Опиши устройството, версията и че е <b>неофициален</b> билд в release бележките.</p>
 				</div>
 			</div>
 
