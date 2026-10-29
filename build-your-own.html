@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Направи DODO OS за твоя телефон | DODO OS</title>
-<meta name="description" content="Как да си направиш DODO OS за твое устройство — за Pixel, Samsung, Xiaomi, Motorola и други. Отворен код.">
+<title>Направи DODO OS за Samsung / Xiaomi | DODO OS</title>
+<meta name="description" content="Урок стъпка по стъпка: как да си компилираш DODO OS за твой Samsung или Xiaomi телефон и да го публикуваш в GitHub. Отворен код.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#05070a">
 <link rel="icon" href="logo-dodo-os.png" type="image/png">
@@ -27,54 +27,97 @@
 <section class="section" id="build-your-own" style="padding-top:40px">
 	<div class="wrap">
 		<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
-			<span class="eyebrow" data-en="Other phones">За други телефони</span>
-			<h2 data-en="Make it for your phone">Направи го за твоя телефон</h2>
-			<p data-en="DODO OS is open source. If you have another device — Pixel, Samsung, Xiaomi, Motorola — you can build your own DODO OS by swapping the device tree.">DODO OS е отворен код. Ако имаш друго устройство — Pixel, Samsung, Xiaomi, Motorola — можеш да си направиш твое DODO OS, като смениш device tree-то.</p>
+			<span class="eyebrow" data-en="Build it yourself">Направи си сам</span>
+			<h2 data-en="Make DODO OS for your Samsung or Xiaomi">Направи DODO OS за твоя Samsung или Xiaomi</h2>
+			<p data-en="DODO OS is open source. Swap in your phone's device tree, build, and publish your own version to GitHub. Here's the whole path — for Samsung and Xiaomi.">DODO OS е отворен код. Смени device tree-то с това за твоя телефон, компилирай и публикувай своя версия в GitHub. Ето целия път — за Samsung и Xiaomi.</p>
 		</div>
 		<div class="guide">
+
 			<div class="guide-step panel reveal">
 				<div class="gn">1</div>
 				<div class="gt">
-					<h3>Намери device tree за твоя телефон</h3>
-					<p>Търси в LineageOS или GitHub по името на твоя модел (напр. „lineage device &lt;телефон&gt;"). Трябват ти: device tree + vendor tree + kernel source. Повечето популярни телефони ги имат поддържани.</p>
+					<h3>Подготви компютъра</h3>
+					<p>Трябва ти <b>Linux</b> (Ubuntu/Debian), <b>16GB+ RAM</b>, <b>~300GB</b> свободно и стабилен интернет. Инсталирай <code>git</code>, <code>repo</code> и Android <code>platform-tools</code> (adb &amp; fastboot). Windows/Mac не стават за самата компилация.</p>
 				</div>
 			</div>
+
 			<div class="guide-step panel reveal">
 				<div class="gn">2</div>
 				<div class="gt">
-					<h3>Клонирай източника на DODO OS</h3>
-					<p>Вземи LineageOS 22.2 база и DODO vendor overlay:</p>
-					<pre class="cmd">repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
-repo sync -j8
-git clone https://github.com/gpsn0w/dodo-os vendor/dodo</pre>
+					<h3>Отключи bootloader-а</h3>
+					<p><b>Xiaomi:</b> влез с Mi акаунт на телефона → Настройки → „Статус на Mi Unlock", после пусни <b>Mi Unlock Tool</b> на компютъра. Xiaomi кара да <b>чакаш 7–30 дни</b> преди да позволи отключване.</p>
+					<p><b>Samsung:</b> Настройки → За програмисти → включи <b>OEM unlocking</b>. Samsung не ползва fastboot — флашва се с <b>Odin</b> (Windows) или <b>Heimdall</b> (Linux).</p>
+					<p>⚠️ Отключването на bootloader-а <b>трие телефона</b>.</p>
 				</div>
 			</div>
+
 			<div class="guide-step panel reveal">
 				<div class="gn">3</div>
 				<div class="gt">
-					<h3>Добави твоя device tree</h3>
-					<p>Сложи дърветата за твоя телефон в <code>device/&lt;марка&gt;/&lt;codename&gt;</code> и <code>kernel/&lt;марка&gt;/&lt;soc&gt;</code>. Включи <code>vendor/dodo/dodo.mk</code> в inherit списъка на устройството.</p>
+					<h3>Намери дърветата за твоя модел</h3>
+					<p>Открий <b>codename</b>-а на телефона (напр. Mi A3 = <code>laurel_sprout</code>). Потърси в <a href="https://wiki.lineageos.org/devices/" target="_blank" rel="noopener">LineageOS wiki</a> или GitHub. Трябват ти три неща: <b>device tree</b>, <b>vendor</b> (проприетарните блобове — обикновено от TheMuppets) и <b>kernel source</b>.</p>
+					<p class="req-qc">⚠️ <b>Задължително Qualcomm (Snapdragon) устройство</b> — не Exynos, не MediaTek. DODO е правено и тествано само на Qualcomm; само там работят правилно ядрото, USB защитите и NetHunter. При <b>Samsung</b> избери <b>Snapdragon</b> варианта (често международните/US модели), не Exynos.</p>
 				</div>
 			</div>
+
 			<div class="guide-step panel reveal">
 				<div class="gn">4</div>
 				<div class="gt">
-					<h3>Компилирай</h3>
-					<p>Избери устройството си и компилирай целия ROM:</p>
-					<pre class="cmd">source build/envsetup.sh
-lunch lineage_&lt;codename&gt;-bp1a-userdebug
-mka bacon</pre>
+					<h3>Клонирай DODO базата</h3>
+					<p>Вземи LineageOS 22.2 (Android 15) и DODO overlay-а:</p>
+					<pre class="cmd">repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
+repo sync -j8
+git clone https://github.com/gpsn0w/dodo-os vendor/dodo</pre>
+					<p>Добави дърветата на твоя телефон през <code>.repo/local_manifests/&lt;codename&gt;.xml</code> и пусни <code>repo sync</code> пак.</p>
 				</div>
 			</div>
+
 			<div class="guide-step panel reveal">
 				<div class="gn">5</div>
 				<div class="gt">
-					<h3>Флашни и сподели</h3>
-					<p>Получаваш подписан зип за твоето устройство в <code>out/target/product/&lt;codename&gt;/</code>. Флашваш го по същия начин като N100 ROM-а. Ако добавиш ново устройство — сподели го в GitHub, за да го ползват и други.</p>
+					<h3>Включи DODO overlay-а</h3>
+					<p>В <code>device/&lt;марка&gt;/&lt;codename&gt;/lineage_&lt;codename&gt;.mk</code> добави един ред:</p>
+					<pre class="cmd">$(call inherit-product-if-exists, vendor/dodo/dodo.mk)</pre>
+					<p>Така устройството ти получава DODO приложенията, overlay-ите, microG и настройките.</p>
 				</div>
 			</div>
+
+			<div class="guide-step panel reveal">
+				<div class="gn">6</div>
+				<div class="gt">
+					<h3>Компилирай</h3>
+					<p>LineageOS сам хваща правилната версия през <code>breakfast</code> — не е нужно да помниш release кода:</p>
+					<pre class="cmd">source build/envsetup.sh
+breakfast &lt;codename&gt;
+brunch &lt;codename&gt;</pre>
+					<p>Първият билд отнема 2–5 часа. Готовият зип е в <code>out/target/product/&lt;codename&gt;/</code>.</p>
+				</div>
+			</div>
+
+			<div class="guide-step panel reveal">
+				<div class="gn">7</div>
+				<div class="gt">
+					<h3>Флашни</h3>
+					<p><b>Xiaomi:</b> <code>fastboot</code> за recovery-то, после sideload на зипа. <b>Samsung:</b> <code>Odin</code> / <code>Heimdall</code>. Бекъпни данните си първо — флашването трие телефона.</p>
+				</div>
+			</div>
+
+			<div class="guide-step panel reveal">
+				<div class="gn">8</div>
+				<div class="gt">
+					<h3>Публикувай в GitHub</h3>
+					<p>Сподели билда си, за да го ползват и други хора с твоя телефон:</p>
+					<pre class="cmd">gh repo create dodo-os-&lt;codename&gt; --public
+gh release create v1 \
+  out/target/product/&lt;codename&gt;/lineage-*.zip \
+  --title "DODO OS · &lt;codename&gt;" \
+  --notes "Android 15 · DODO overlay · неофициален билд"</pre>
+					<p>⚠️ Качвай само <b>чистата</b> версия (без root и лични неща). Опиши устройството, версията и че е неофициален билд в release бележките.</p>
+				</div>
+			</div>
+
 		</div>
-		<p class="pledge reveal" style="margin-top:26px">⚠ Компилирането на ROM иска силен компютър (16GB+ RAM, 300GB диск, Linux). Първият билд отнема 2–5 часа. Не е за начинаещи — но е постижимо.</p>
+		<p class="pledge reveal" style="margin-top:26px">⚠ Компилирането иска силен компютър (16GB+ RAM, ~300GB диск, Linux). Не е за начинаещи — но е напълно постижимо. DODO OS е отворен код под AGPL-3.0; името и логото остават запазени.</p>
 	</div>
 </section>
 
