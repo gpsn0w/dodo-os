@@ -132,5 +132,25 @@ gh release create v1 \
 
 <script src="three.min.js"></script>
 <script src="bg-field.js?v=4"></script>
+<script>
+/* Самостоятелен reveal + часовник за тази страница (не зависи от site.js) */
+(function(){
+	var els = document.querySelectorAll('.reveal');
+	if ('IntersectionObserver' in window) {
+		var io = new IntersectionObserver(function(entries){
+			entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+		}, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+		els.forEach(function(el){ io.observe(el); });
+		/* failsafe: покажи всичко след 1.2с каквото и да става */
+		setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 1200);
+	} else {
+		els.forEach(function(el){ el.classList.add('in'); });
+	}
+	var clk = document.getElementById('barClock');
+	if (clk) { var t=function(){ clk.textContent = new Date().toTimeString().slice(0,8); }; t(); setInterval(t,1000); }
+	var sp = document.getElementById('scrollProgress');
+	if (sp) { var s=function(){ var h=document.documentElement; sp.style.width=((h.scrollTop/((h.scrollHeight-h.clientHeight)||1))*100)+'%'; }; window.addEventListener('scroll',s,{passive:true}); s(); }
+})();
+</script>
 </body>
 </html>
