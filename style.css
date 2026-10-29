@@ -691,6 +691,10 @@ h1, h2, h3, h4 {
 .guide-step .gt .cmd { max-width: 100%; }
 /* дългите inline код-пътища да се пренасят, не да разширяват страницата */
 .guide-step .gt code, .guide-step .gt a { overflow-wrap: anywhere; word-break: break-word; }
+/* guide страницата: навигацията е проста inline препратка (без hamburger меню) */
+.guide-page .nav { position: static; transform: none; flex-direction: row; align-items: center; background: none; border: 0; padding: 0; margin-left: auto; }
+.guide-page .nav a { padding: 6px 10px; border: 0; white-space: nowrap; }
+.guide-page .nav-toggle { display: none; }
 
 .setup-box { max-width: 860px; margin: 26px auto 0; }
 .setup-box h3 { font-size: 20px; letter-spacing: 1px; margin: 8px 0 10px; }
