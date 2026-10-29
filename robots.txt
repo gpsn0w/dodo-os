@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /build-your-own.html
 
 Sitemap: https://gpsn0w.github.io/dodo-os/sitemap.xml
