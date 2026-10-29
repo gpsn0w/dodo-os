@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#05070a">
 <link rel="icon" href="logo-dodo-os.png" type="image/png">
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body class="home guide-page">
 
@@ -31,7 +31,45 @@
 			<h2 data-en="Make DODO OS for your Samsung or Xiaomi">Направи DODO OS за твоя Samsung или Xiaomi</h2>
 			<p data-en="DODO OS is open source. Swap in your phone's device tree, build, and publish your own version to GitHub. Here's the whole path — for Samsung and Xiaomi.">DODO OS е отворен код. Смени device tree-то с това за твоя телефон, компилирай и публикувай своя версия в GitHub. Ето целия път — за Samsung и Xiaomi.</p>
 		</div>
-		<div class="guide">
+		<div class="rec-devices reveal">
+			<h3 class="rec-title">📱 Кой телефон да си вземеш?</h3>
+			<p class="rec-sub">Задължително <b>Qualcomm (Snapdragon)</b> устройство. Ето най-добрите бази за DODO — от най-препоръчано надолу:</p>
+			<div class="rec-grid">
+				<div class="rec-card rec-gold">
+					<div class="rec-rank">🥇</div>
+					<div class="rec-name">OnePlus</div>
+					<div class="rec-why">Най-лесното отключване в бранша, Qualcomm, огромна поддръжка, евтин втора ръка. Най-малко главоболие.</div>
+				</div>
+				<div class="rec-card rec-silver">
+					<div class="rec-rank">🥈</div>
+					<div class="rec-name">Motorola</div>
+					<div class="rec-why">Qualcomm моделите са лесни за отключване, кротки и достъпни.</div>
+				</div>
+				<div class="rec-card rec-bronze">
+					<div class="rec-rank">🥉</div>
+					<div class="rec-name">Fairphone</div>
+					<div class="rec-why">Qualcomm + позволява <b>заключване с твой ключ</b> (рядкост!). Най-сигурната база, близо до Pixel.</div>
+				</div>
+				<div class="rec-card">
+					<div class="rec-rank">👍</div>
+					<div class="rec-name">Xiaomi (по-стари)</div>
+					<div class="rec-why">Mi A3, Poco и подобни стават добре. Новите модели са трудни за отключване.</div>
+				</div>
+				<div class="rec-card rec-avoid">
+					<div class="rec-rank">⛔</div>
+					<div class="rec-name">Samsung (нови / Exynos)</div>
+					<div class="rec-why">Заключени bootloader-и и Exynos чип — не стават. Ако държиш на Samsung → само <b>Snapdragon</b> вариант.</div>
+				</div>
+			</div>
+		</div>
+
+		<details class="guide-collapse reveal">
+			<summary class="guide-open-btn">
+				<span class="gob-ic">⚙</span>
+				<span class="gob-txt">Виж целия урок — стъпка по стъпка</span>
+				<span class="gob-arrow" aria-hidden="true">▸</span>
+			</summary>
+			<div class="guide">
 
 			<div class="guide-step panel reveal">
 				<div class="gn">1</div>
@@ -158,6 +196,7 @@ gh release create v1 \
 			</div>
 
 		</div>
+		</details>
 		<p class="pledge reveal" style="margin-top:26px">⚠ Компилирането иска силен компютър (16GB+ RAM, ~300GB диск, Linux). Не е за начинаещи — но е напълно постижимо. DODO OS е отворен код под AGPL-3.0; името и логото остават запазени.</p>
 	</div>
 </section>
