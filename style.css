@@ -675,7 +675,7 @@ h1, h2, h3, h4 {
 
 /* ============================== УРОК / SETUP ============================== */
 .guide { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
-.guide-step { display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; }
+.guide-step { display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; min-width: 0; }
 .guide-step .gn {
     flex: none; width: 46px; height: 46px; display: grid; place-items: center;
     font-family: var(--font-head); font-weight: 900; font-size: 20px;
@@ -685,6 +685,12 @@ h1, h2, h3, h4 {
 .guide-step .gt h3 { font-size: 17px; letter-spacing: 1px; margin-bottom: 7px; }
 .guide-step .gt p { font-size: 14px; color: rgba(var(--rgb-mint), 0.82); line-height: 1.65; }
 .guide-step .gt b { color: var(--bright); }
+/* mobile fix: текстовата колона да се свива под min-content, за да скролва
+   командният блок вътрешно вместо да разширява цялата страница */
+.guide-step .gt { min-width: 0; }
+.guide-step .gt .cmd { max-width: 100%; }
+/* дългите inline код-пътища да се пренасят, не да разширяват страницата */
+.guide-step .gt code, .guide-step .gt a { overflow-wrap: anywhere; word-break: break-word; }
 
 .setup-box { max-width: 860px; margin: 26px auto 0; }
 .setup-box h3 { font-size: 20px; letter-spacing: 1px; margin: 8px 0 10px; }
